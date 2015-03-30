@@ -1,0 +1,70 @@
+{
+  "min_packer_version": "0.6.0",
+  "variables": {
+    "build_name": "{{env `BUILD_NAME`}}",
+    "build_version": "{{env `BUILD_VERSION`}}",
+    "core": 2,
+    "memory": 4096,
+    "disk_size": 51200,
+    "ssh_port": 22,
+    "ssh_wait_timeout": "1h",
+    "iso_url": "http://172.16.39.10/04_ISO/cn_windows_server_2012_r2_with_update_x64_dvd_4048415.iso",
+    "iso_md5": "bcbbce8d75d836777e864759c5b8cde0",
+    "vm_name": "win2012R2"
+  },
+  "builders": [
+    {
+      "name": "{{user `build_name`}}-{{user `build_version`}}",
+      "type": "qemu",
+      "format": "qcow2",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_md5`}}",
+      "iso_checksum_type": "md5",
+      "output_directory": "disk",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "qemu_binary": "/usr/bin/qemu-kvm",
+      "qemuargs": [
+          [ "-m", "size={{user `memory`}}" ],
+          [ "-smp", "2,sockets=2,cores={{user `core`}},threads=1" ]
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "http_directory": "http",
+      "headless": true,
+      "vm_name": "{{user `vm_name`}}",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_wait": "5s",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "floppy_files": [
+        "http/Autounattend.xml",
+        "scripts/microsoft-updates.bat",
+        "virtio/*",
+        "scripts/openssh.ps1"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/enable-rdp.bat",
+        "./scripts/disable-auto-logon.bat"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "compression_level": 6,
+      "output": "./builds/{{.BuildName}}.box"
+    }
+  ]
+}
