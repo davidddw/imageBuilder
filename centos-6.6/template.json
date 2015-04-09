@@ -53,7 +53,8 @@
       "type": "shell",
       "scripts": [
           "scripts/base.sh",
-          "scripts/zerodisk.sh"
+          "scripts/zerodisk.sh",
+          "scripts/cleanup.sh"
       ]
     }
   ]
