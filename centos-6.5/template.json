@@ -56,12 +56,5 @@
           "scripts/zerodisk.sh"
       ]
     }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": 6,
-      "output": "./builds/{{.BuildName}}.box"
-    }
   ]
 }
