@@ -10,7 +10,7 @@
     "ssh_wait_timeout": "1h",
     "iso_url": "http://172.16.39.10/04_ISO/cn_windows_server_2012_r2_with_update_x64_dvd_4048415.iso",
     "iso_md5": "bcbbce8d75d836777e864759c5b8cde0",
-    "vm_name": "win2012R2"
+    "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
     {
@@ -58,13 +58,6 @@
         "./scripts/enable-rdp.bat",
         "./scripts/disable-auto-logon.bat"
       ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": 6,
-      "output": "./builds/{{.BuildName}}.box"
     }
   ]
 }

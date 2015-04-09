@@ -10,7 +10,7 @@
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://172.16.39.10/04_ISO/CentOS-7.0-1406-x86_64-Minimal.iso",
     "iso_md5": "5a075273f00eb5e0d22ac9e5879972b1",
-    "vm_name": "centos-7.0"
+    "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
     {
@@ -55,13 +55,6 @@
           "scripts/base.sh",
           "scripts/zerodisk.sh"
       ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": 6,
-      "output": "./builds/{{.BuildName}}.box"
     }
   ]
 }

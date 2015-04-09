@@ -3,15 +3,15 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d')"}
-: ${BUILD_NAME:="Windows_2008_R2_SP1"}
-: ${VM_NAME:="Windows_2008_R2"}
+: ${BUILD_NAME:="CentOS-7.1-x86_64"}
+: ${VM_NAME:="centos_7.1"}
 
 export BUILD_NAME
 export VM_NAME
 export BUILD_VERSION
 
 PWD=`pwd`
-FILENAME=$VM_NAME
+FILENAME=${VM_NAME}.qcow2
 PACKER=/usr/bin/packer-build
 
 if [ -e "${PWD}/disk" ];

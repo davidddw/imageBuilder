@@ -10,7 +10,7 @@
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://172.16.39.10/04_ISO/ubuntu-12.04.5-server-amd64.iso",
     "iso_md5": "769474248a3897f4865817446f9a4a53",
-    "vm_name": "ubuntu-12.04"
+    "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
     {
@@ -78,13 +78,6 @@
           "scripts/cleanup.sh",
           "scripts/zerodisk.sh"
       ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": 6,
-      "output": "./builds/{{.BuildName}}.box"
     }
   ]
 }

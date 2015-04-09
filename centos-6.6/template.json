@@ -10,7 +10,7 @@
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://172.16.39.10/04_ISO/CentOS-6.6-x86_64-minimal.iso",
     "iso_md5": "eb3c8be6ab668e6d83a118323a789e6c",
-    "vm_name": "centos-6.6"
+    "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
     {
