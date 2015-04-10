@@ -54,6 +54,7 @@
       "scripts": [
           "scripts/base.sh",
           "scripts/zerodisk.sh",
+          "scripts/custom.sh",
           "scripts/cleanup.sh"
       ]
     }
