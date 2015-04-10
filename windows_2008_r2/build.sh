@@ -2,7 +2,7 @@
 
 set -x
 
-: ${BUILD_VERSION:="v$(date +'%Y%m%d')"}
+: ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
 : ${BUILD_NAME:="Windows_2008_R2_SP1"}
 : ${VM_NAME:="Windows_2008_R2"}
 

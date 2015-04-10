@@ -2,7 +2,7 @@
 
 set -x
 
-: ${BUILD_VERSION:="v$(date +'%Y%m%d')"}
+: ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
 : ${BUILD_NAME:="Ubuntu-14.04.2-x86_64"}
 : ${VM_NAME:="ubuntu14.04.2"}
 

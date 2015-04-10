@@ -2,7 +2,7 @@
 
 set -x
 
-: ${BUILD_VERSION:="v$(date +'%Y%m%d')"}
+: ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
 : ${BUILD_NAME:="Debian-7.8.0-x86_64"}
 : ${VM_NAME:="debian7.8"}
 
