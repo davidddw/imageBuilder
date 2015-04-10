@@ -1,5 +1,6 @@
 # add custom script in here
 
+# add respawn script
 cat <<'EOF' > /etc/init/qemu-ga.conf 
 # qemu-ga
 start on runlevel [2345]
@@ -19,9 +20,23 @@ end script
 exec /usr/bin/qemu-ga --method $TRANSPORT_METHOD --path $DEVPATH --logfile $LOGFILE --pidfile $PIDFILE --blacklist $BLACKLIST_RPC
 EOF
 
+# wget vm_init
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
+# wget qemu_ga
 cd /usr/bin && wget http://172.16.39.10/09_config/qemu-ga && chmod +x qemu-ga
 
+# remove ip and mac address
 rm -fr /etc/udev/rules.d/70-persistent-net.rules
 rm -fr /etc/sysconfig/network-scripts/ifcfg-eth0
+
+# enable tty console
+echo "ttyS0" >> /etc/securetty
+
+cat <<'EOF' > /etc/init/ttyS0.conf
+stop on runlevel [S016]
+start on runlevel [2345]
+respawn
+instance /dev/ttyS0
+exec /sbin/mingetty ttyS0
+EOF
 
