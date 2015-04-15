@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="CentOS-6.6-x86_64"}
-: ${VM_NAME:="centos_6.6"}
+: ${BUILD_NAME:="CentOS-6.5-x86_64"}
+: ${VM_NAME:="centos_6.5"}
 
 export BUILD_NAME
 export VM_NAME
@@ -12,7 +12,7 @@ export BUILD_VERSION
 
 PWD=`pwd`
 FILENAME=${VM_NAME}.qcow2
-PACKER=/usr/bin/packer-build
+PACKER=/opt/packer-builder-cloud/bin/packer
 
 if [ -e "${PWD}/disk" ];
 then

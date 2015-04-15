@@ -40,3 +40,7 @@ instance /dev/ttyS0
 exec /sbin/mingetty ttyS0
 EOF
 
+# disable firewall
+service iptables stop
+chkconfig iptables off
+
