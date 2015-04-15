@@ -20,7 +20,7 @@
       "name": "{{user `build_name`}}-{{user `build_version`}}",
       "type": "xenserver-iso",
       "format": "xva",
-      "remote_host": "{{env `remote_host`}}",
+      "remote_host": "{{user `remote_host`}}",
       "remote_username": "root",
       "remote_password": "yunshan3302",
       "iso_sr_name": "{{user `iso_sr_name`}}",
