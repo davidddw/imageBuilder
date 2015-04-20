@@ -1,0 +1,55 @@
+;SetupMgrTag
+[Data]
+    AutoPartition=1
+    MsDosInitiated="0"
+    UnattendedInstall="Yes"
+
+[Unattended]
+    UnattendMode=FullUnattended
+    OemSkipEula=Yes
+    OemPreinstall=Yes
+    TargetPath=\WINDOWS
+    UnattendSwitch=Yes
+    WaitForReboot=No
+
+[GuiUnattended]
+    EncryptedAdminPassword=NO
+    OemSkipWelcome=1
+    AdminPassword="password"
+    OEMSkipRegional=1
+    TimeZone=210
+
+[Display]
+    BitsPerPel=24
+    Xresolution=800
+    Yresolution=600
+    Vrefresh=70
+
+[UserData]
+    FullName="test"
+    OrgName="test"
+    ProductKey=MM72Q-QBVRW-JGDB6-94C22-GR8YJ
+    ComputerName=*
+
+[LicenseFilePrintData]
+    AutoMode=PerServer
+    AutoUsers=50
+
+[TapiLocation]
+ 　　CountryCode=86
+ 　　Dialing=Tone
+
+[Identification]
+    JoinWorkgroup=WORKGROUP
+
+[Networking]
+    InstallDefaultComponents=Yes
+
+[RegionalSettings]
+    LanguageGroup=10
+
+[Shell]
+    DefaultStartPanelOff = Yes
+
+[GuiRunOnce]
+    %systemdrive%\install\applications.cmd

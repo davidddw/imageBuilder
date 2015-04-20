@@ -12,7 +12,7 @@ export BUILD_VERSION
 
 PWD=`pwd`
 FILENAME=$VM_NAME
-PACKER=/usr/bin/packer-build
+PACKER=/opt/packer-builder-cloud/bin/packer
 
 if [ -e "${PWD}/disk" ];
 then

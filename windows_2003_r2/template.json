@@ -1,0 +1,64 @@
+{
+  "min_packer_version": "0.6.0",
+  "variables": {
+    "build_name": "{{env `BUILD_NAME`}}",
+    "build_version": "{{env `BUILD_VERSION`}}",
+    "core": 2,
+    "memory": 4096,
+    "disk_size": 51200,
+    "ssh_wait_timeout": "2h",
+    "iso_url": "http://172.16.39.10/04_ISO/cn_win_srv_2003_r2_enterprise_x64_with_sp2.iso",
+    "iso_md5": "23965e7dabc8c4a059a9fcf8387f9408",
+    "vm_name": "{{env `VM_NAME`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `build_name`}}-{{user `build_version`}}",
+      "type": "qemu",
+      "format": "qcow2",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_md5`}}",
+      "iso_checksum_type": "md5",
+      "output_directory": "disk",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "qemu_binary": "/usr/bin/qemu-kvm",
+      "qemuargs": [
+          [ "-m", "size={{user `memory`}}" ],
+          [ "-smp", "2,sockets=2,cores={{user `core`}},threads=1" ]
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "http_directory": "http",
+      "headless": true,
+      "vm_name": "{{user `vm_name`}}",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_wait": "5s",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "floppy_files": [
+        "http/unattend.txt",
+        "scripts/microsoft-updates.bat",
+        "scripts/disk1",
+        "scripts/txtsetup.oem",
+        "virtio/*",
+        "scripts/openssh.ps1"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/enable-rdp.bat",
+        "./scripts/disable-auto-logon.bat"
+      ]
+    }
+  ]
+}

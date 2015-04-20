@@ -1,0 +1,63 @@
+{
+  "min_packer_version": "0.6.0",
+  "variables": {
+    "build_name": "{{env `BUILD_NAME`}}",
+    "build_version": "{{env `BUILD_VERSION`}}",
+    "core": 1,
+    "memory": 1024,
+    "disk_size": 40960,
+    "ssh_port": 22,
+    "remote_host": "172.16.1.106",
+    "iso_sr_name": "Local_ISO",
+    "sr_name": "SR_Local",
+    "ssh_wait_timeout": "10000s",
+    "iso_url": "http://172.16.39.10/04_ISO/CentOS-6.5-x86_64-minimal.iso",
+    "iso_md5": "0d9dc37b5dd4befa1c440d2174e88a87",
+    "vm_name": "{{env `VM_NAME`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `build_name`}}-{{user `build_version`}}",
+      "type": "xenserver-iso",
+      "format": "xva",
+      "remote_host": "{{user `remote_host`}}",
+      "remote_username": "root",
+      "remote_password": "yunshan3302",
+      "iso_sr_name": "{{user `iso_sr_name`}}",
+      "sr_name": "{{user `sr_name`}}",
+      "clone_template": "CentOS 6 (64-bit)",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_md5`}}",
+      "iso_checksum_type": "md5",
+      "output_directory": "disk",
+      "shutdown_command": "shutdown -h now",
+      "disk_size": "{{user `disk_size`}}",
+      "http_directory": "http",
+      "vm_name": "{{user `vm_name`}}",
+      "vm_memory": "{{user `memory`}}",
+      "keep_vm": "always",
+      "boot_wait": "10s",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_username": "root",
+      "ssh_password": "yunshan3302",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "ssh_port": "{{user `ssh_port`}}",
+      "boot_command":
+      [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+          "scripts/base.sh",
+          "scripts/zerodisk.sh",
+          "scripts/custom_xen.sh",
+          "scripts/cleanup.sh"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[Disks]
+d1 = "DISK (SCSI) WIN2003 amd64",\disk1,\
+
+[Defaults]
+scsi = WIN2003amd64
+
+[scsi]
+WIN2003amd64  = "Red Hat VirtIO SCSI Disk Device WIN2003 amd64"
+
+[Files.scsi.WIN2003amd64]
+driver = d1, viostor.sys, viostor
+inf    = d1, viostor.inf
+catalog= d1, viostor.cat
+
+[HardwareIds.scsi.WIN2003amd64]
+id = "PCI\VEN_1AF4&DEV_1001&SUBSYS_00000000", "viostor"
+id = "PCI\VEN_1AF4&DEV_1001&SUBSYS_00020000", "viostor"
+id = "PCI\VEN_1AF4&DEV_1001&SUBSYS_00021AF4", "viostor"
+
+[Config.WIN2003amd64]
+value = Parameters\PnpInterface,5,REG_DWORD,1
+
