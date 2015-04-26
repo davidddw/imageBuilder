@@ -28,7 +28,7 @@
 [UserData]
     FullName="test"
     OrgName="test"
-    ProductKey=MM72Q-QBVRW-JGDB6-94C22-GR8YJ
+    ProductKey=BBGTH-2VC48-J98CM-969J7-3YPMJ
     ComputerName=*
 
 [LicenseFilePrintData]
