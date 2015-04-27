@@ -19,8 +19,8 @@ EOF
 ln -s /bin/bash /bin/sh
 
 # disable firewall
-service iptables stop
-chkconfig iptables off
+/usr/sbin/service iptables stop
+/sbin/chkconfig iptables off
 
 # install xen tools
 mount /dev/sr0 /mnt

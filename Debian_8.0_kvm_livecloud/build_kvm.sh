@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="Debian-7.8.0-x86_64"}
-: ${VM_NAME:="debian7.8"}
+: ${BUILD_NAME:="Debian-8.0.0-x86_64"}
+: ${VM_NAME:="debian80"}
 
 export BUILD_NAME
 export VM_NAME
@@ -24,7 +24,7 @@ then
     mkdir -pv ${PWD}/final_images
 fi
 
-$PACKER build template.json
+$PACKER build template_kvm.json
 
 cd disk
 qemu-img convert -c -O qcow2 $FILENAME ${BUILD_NAME}-${BUILD_VERSION}.qcow2
