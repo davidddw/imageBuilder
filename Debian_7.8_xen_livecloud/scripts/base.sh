@@ -5,6 +5,6 @@ cat <<'EOF' > /etc/apt/sources.list
 deb http://172.16.39.41/debian wheezy main
 EOF
 apt-get update
-apt-get install -y chkconfig libglib2.0-0
+apt-get install -y --force-yes chkconfig libglib2.0-0 curl 
 
 echo "UseDNS no" >> /etc/ssh/sshd_config
