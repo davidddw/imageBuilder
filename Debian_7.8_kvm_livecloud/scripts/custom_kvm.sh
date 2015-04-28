@@ -117,7 +117,7 @@ mkdir -p /usr/local/var/run/
 # wget vm_init
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
 # wget qemu_ga
-cd /usr/sbin && wget http://172.16.39.10/09_config/qemu-ga.deb && mv qemu-ga.deb qemu-ga && chmod +x qemu-ga
+cd /usr/sbin && wget http://172.16.39.10/09_config/qga/qemu-ga.deb7 && mv qemu-ga.deb7 qemu-ga && chmod +x qemu-ga
 
 # enable tty console
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
