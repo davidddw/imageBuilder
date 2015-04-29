@@ -8,8 +8,8 @@
     "disk_size": 40960,
     "ssh_port": 22,
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/04_ISO/debian-8.0.0-amd64-netinst.iso",
-    "iso_md5": "d9209f355449fe13db3963571b1f52d4",
+    "iso_url": "http://172.16.39.10/04_ISO/ubuntu-12.04.5-server-amd64.iso",
+    "iso_md5": "769474248a3897f4865817446f9a4a53",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
@@ -21,7 +21,7 @@
       "iso_checksum": "{{user `iso_md5`}}",
       "iso_checksum_type": "md5",
       "output_directory": "disk",
-      "shutdown_command": "/sbin/shutdown -h now",
+      "shutdown_command": "shutdown -h now",
       "qemu_binary": "/usr/bin/qemu-kvm",
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
@@ -43,21 +43,28 @@
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
       "ssh_port": "{{user `ssh_port`}}",
       "boot_command":
-      [
+      [ 
         "<esc><wait>",
-        "install <wait>",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-        "debian-installer=en_US <wait>",
-        "auto <wait>",
-        "locale=en_US <wait>",
-        "kbd-chooser/method=us <wait>",
-        "netcfg/get_hostname={{ .Name }} <wait>",
-        "netcfg/get_domain=vagrantup.com <wait>",
-        "fb=false <wait>",
-        "debconf/frontend=noninteractive <wait>",
-        "console-setup/ask_detect=false <wait>",
-        "console-keymaps-at/keymap=us <wait>",
-        "keyboard-configuration/xkb-keymap=us <wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
+        " debconf/frontend=noninteractive<wait>",
+        " debian-installer=en_US<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US<wait>",
+        " netcfg/get_hostname=ubuntu-1204<wait>",
+        " netcfg/get_domain=vagrantup.com<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
+        " -- <wait>",
         "<enter><wait>"
       ]
     }
@@ -67,7 +74,7 @@
       "type": "shell",
       "scripts": [
           "scripts/base.sh",
-          "scripts/custom_kvm.sh",
+          "scripts/custom.sh",
           "scripts/cleanup.sh",
           "scripts/zerodisk.sh"
       ]
