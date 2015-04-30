@@ -75,7 +75,7 @@
       "execute_command": "echo 'yunshan3302'|sudo -S sh '{{.Path}}'",
       "scripts": [
           "scripts/base.sh",
-          "scripts/custom.sh",
+          "scripts/custom_kvm.sh",
           "scripts/cleanup.sh",
           "scripts/zerodisk.sh"
       ]
