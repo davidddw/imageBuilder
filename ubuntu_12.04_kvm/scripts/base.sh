@@ -1,24 +1,15 @@
 
 cat <<'EOF' > /etc/apt/sources.list
-deb http://mirrors.ustc.edu.cn/ubuntu/ precise-updates main restricted
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise-updates main restricted
-deb http://mirrors.ustc.edu.cn/ubuntu/ precise universe
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise universe
-deb http://mirrors.ustc.edu.cn/ubuntu/ precise-updates universe
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise-updates universe
-deb http://mirrors.ustc.edu.cn/ubuntu/ precise multiverse
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise multiverse
-deb http://mirrors.ustc.edu.cn/ubuntu/ precise-updates multiverse
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise-updates multiverse
-deb http://mirrors.ustc.edu.cn/ubuntu/ precise-backports main restricted universe multiverse
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise-backports main restricted universe multiverse
-
-deb http://security.ubuntu.com/ubuntu precise-security main restricted
-deb-src http://security.ubuntu.com/ubuntu precise-security main restricted
-deb http://security.ubuntu.com/ubuntu precise-security universe
-deb-src http://security.ubuntu.com/ubuntu precise-security universe
-deb http://security.ubuntu.com/ubuntu precise-security multiverse
-deb-src http://security.ubuntu.com/ubuntu precise-security multiverse
+deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse
 EOF
 
 apt-get update
