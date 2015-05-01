@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="CentOS-6.5-x86_64"}
-: ${VM_NAME:="centos_6.5"}
+: ${BUILD_NAME:="Ubuntu-14.04.2-x86_64"}
+: ${VM_NAME:="ubuntu14.04.2"}
 
 export BUILD_NAME
 export VM_NAME
@@ -27,15 +27,10 @@ fi
 $PACKER build template_kvm.json
 
 cd disk
-#qemu-img convert -O raw $FILENAME box.raw
-#vhd-util convert -s 0 -t 1 -i box.raw -o stagefixed.vhd
-#vhd-util convert -s 1 -t 2 -i stagefixed.vhd -o ${BUILD_NAME}-${BUILD_VERSION}.vhd
 qemu-img convert -c -O qcow2 $FILENAME ${BUILD_NAME}-${BUILD_VERSION}.qcow2
-#bzip2 ${BUILD_NAME}-${BUILD_VERSION}.vhd
 cd -
 
 mv ${PWD}/disk/${BUILD_NAME}-${BUILD_VERSION}.qcow2 ${PWD}/final_images
-#mv ${PWD}/disk/${BUILD_NAME}-${BUILD_VERSION}.vhd.bz2 ${PWD}/final_images
 rm -rf ${PWD}/disk
 echo "==> Generate files:"
 find ${PWD}/final_images -type f -printf "==> %f\n"
