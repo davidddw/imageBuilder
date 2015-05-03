@@ -13,6 +13,6 @@ deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe
 EOF
 
 apt-get update
-apt-get install -y --force-yes chkconfig libglib2.0-0 curl 
+apt-get install -y --force-yes libglib2.0-0 curl 
 
 echo "UseDNS no" >> /etc/ssh/sshd_config
