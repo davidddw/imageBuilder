@@ -30,7 +30,7 @@
       "iso_checksum": "{{user `iso_md5`}}",
       "iso_checksum_type": "md5",
       "output_directory": "disk",
-      "shutdown_command": "echo 'shutdown -h now' > /tmp/shutdown.sh; echo 'yunshan3302'|sudo -S sh '/tmp/shutdown.sh'",
+      "shutdown_command": "shutdown -h now",
       "qemu_binary": "/usr/bin/qemu-kvm",
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
@@ -44,7 +44,7 @@
       "http_port_max": 10089,
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
-      "ssh_username": "livecloud",
+      "ssh_username": "root",
       "ssh_password": "yunshan3302",
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
       "ssh_port": "{{user `ssh_port`}}",

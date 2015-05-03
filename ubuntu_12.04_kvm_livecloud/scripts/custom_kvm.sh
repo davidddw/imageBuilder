@@ -20,6 +20,8 @@ end script
 exec /usr/bin/qemu-ga --method $TRANSPORT_METHOD --path $DEVPATH --logfile $LOGFILE --pidfile $PIDFILE --blacklist $BLACKLIST_RPC
 EOF
 
+mkdir -p /usr/local/var/run/
+
 # wget vm_init
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
 # wget qemu_ga
