@@ -16,7 +16,7 @@ else
 fi
 EOF
 
-ln -s /bin/bash /bin/sh
+rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 
 # disable firewall
 /usr/sbin/service iptables stop

@@ -26,6 +26,8 @@ mkdir -p /usr/local/var/run/
 
 # wget vm_init
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
+rm -rf /bin/sh && ln -s /bin/bash /bin/sh
+
 # wget qemu_ga
 cd /usr/bin && wget http://172.16.39.10/09_config/qga/qemu-ga.deb8 && mv qemu-ga.deb8 qemu-ga && chmod +x qemu-ga
 
