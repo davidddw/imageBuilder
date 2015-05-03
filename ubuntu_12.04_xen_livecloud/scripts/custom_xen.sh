@@ -18,6 +18,8 @@ EOF
 
 rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 
+sed -i -e 's/sleep 40/# sleep 40/' -e 's/sleep 59/# sleep 59/' /etc/init/failsafe.conf
+
 # disable firewall
 /usr/sbin/service iptables stop
 /sbin/chkconfig iptables off

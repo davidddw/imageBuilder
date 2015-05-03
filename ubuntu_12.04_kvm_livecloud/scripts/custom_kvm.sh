@@ -26,6 +26,8 @@ mkdir -p /usr/local/var/run/
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
 rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 
+sed -i -e 's/sleep 40/# sleep 40/' -e 's/sleep 59/# sleep 59/' /etc/init/failsafe.conf
+
 # wget qemu_ga
 cd /usr/bin && wget http://172.16.39.10/09_config/qga/qemu-ga.ubuntu12 && mv qemu-ga.ubuntu12 qemu-ga && chmod +x qemu-ga
 
