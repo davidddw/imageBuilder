@@ -20,7 +20,7 @@ enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 EOF
 
-yum --disablerepo=\* --enablerepo=centos7,epel7 -y install vim openssh-clients
+yum --disablerepo=\* --enablerepo=centos7,epel7 -y install vim openssh-clients wget
 
 # Make ssh faster by not waiting on DNS
 echo "UseDNS no" >> /etc/ssh/sshd_config

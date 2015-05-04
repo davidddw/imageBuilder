@@ -8,12 +8,10 @@ After=dev-virtio\x2dports-org.qemu.guest_agent.0.device
 
 [Service]
 UMask=0077
-EnvironmentFile=/etc/sysconfig/qemu-ga
 ExecStart=/usr/bin/qemu-ga \
   --method=virtio-serial \
   --path=/dev/virtio-ports/org.qemu.guest_agent.0 \
-  --blacklist=${BLACKLIST_RPC} \
-  -F${FSFREEZE_HOOK_PATHNAME}
+  --blacklist=guest-file-open,guest-file-close,guest-file-read,guest-file-write,guest-file-seek,guest-file-flush
 StandardError=syslog
 Restart=always
 RestartSec=0
@@ -21,8 +19,9 @@ RestartSec=0
 [Install]
 WantedBy=multi-user.target
 EOF
-
+systemctl enable qemu-guest-agent.service
 mkdir -p /usr/local/var/run/
+
 # wget vm_init
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
 # wget qemu_ga

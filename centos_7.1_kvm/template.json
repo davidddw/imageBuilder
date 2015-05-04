@@ -5,7 +5,7 @@
     "build_version": "{{env `BUILD_VERSION`}}",
     "core": 1,
     "memory": 1024,
-    "disk_size": 10240,
+    "disk_size": 40960,
     "ssh_port": 22,
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://172.16.39.10/04_ISO/CentOS-7.1-x86_64-Minimal-1503.iso",
@@ -53,7 +53,7 @@
       "type": "shell",
       "scripts": [
           "scripts/base.sh",
-          "scripts/custom.sh",
+          "scripts/custom_kvm.sh",
           "scripts/zerodisk.sh",
           "scripts/cleanup.sh"
       ]
