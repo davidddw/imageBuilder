@@ -1,5 +1,8 @@
 cat <<'EOF' > /etc/apt/sources.list
-deb http://172.16.39.42/debian jessie main
+deb http://ftp.cn.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.cn.debian.org/debian/ jessie main contrib non-free
+deb http://ftp.cn.debian.org/debian-security/ jessie/updates main
+deb-src http://ftp.cn.debian.org/debian-security/ jessie/updates main
 EOF
 apt-get update
 apt-get install -y --force-yes chkconfig libglib2.0-0 curl 

@@ -24,7 +24,7 @@ then
     mkdir -pv ${PWD}/final_images
 fi
 
-$PACKER build template.json
+$PACKER build template_kvm.json
 
 cd disk
 qemu-img convert -c -O qcow2 $FILENAME ${BUILD_NAME}-${BUILD_VERSION}.qcow2

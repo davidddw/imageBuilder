@@ -1,8 +1,9 @@
-sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=sudo' /etc/sudoers
-sed -i -e 's/%sudo  ALL=(ALL:ALL) ALL/%sudo  ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 cat <<'EOF' > /etc/apt/sources.list
-deb http://172.16.39.41/debian wheezy main
+deb http://ftp.cn.debian.org/debian/ wheezy main contrib non-free
+deb-src http://ftp.cn.debian.org/debian/ wheezy main contrib non-free
+deb http://ftp.cn.debian.org/debian-security/ wheezy/updates main
+deb-src http://ftp.cn.debian.org/debian-security/ wheezy/updates main
 EOF
 apt-get update
 apt-get install -y --force-yes chkconfig libglib2.0-0 curl 
