@@ -46,6 +46,7 @@
       "floppy_files": [
         "http/Autounattend.xml",
         "scripts/microsoft-updates.bat",
+        "scripts/win-updates.ps1",
         "virtio/*",
         "scripts/openssh.ps1"
       ]
