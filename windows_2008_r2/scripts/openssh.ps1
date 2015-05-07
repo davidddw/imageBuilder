@@ -21,7 +21,7 @@ if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
 Stop-Service "OpenSSHd" -Force
 
 # ensure vagrant can log in
-Write-Host "Setting vagrant user file permissions"
+Write-Host "Setting vagrant administrator file permissions"
 New-Item -ItemType Directory -Force -Path "C:\Users\administrator\.ssh"
 C:\Windows\System32\icacls.exe "C:\Users\administrator" /grant "administrator:(OI)(CI)F"
 C:\Windows\System32\icacls.exe "C:\Program Files\OpenSSH\bin" /grant "administrator:(OI)RX"
