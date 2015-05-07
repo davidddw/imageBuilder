@@ -105,7 +105,7 @@
           <Value>yunshan3302</Value>
           <PlainText>true</PlainText>
         </Password>
-        <Username>administrator</Username>
+        <Username>Administrator</Username>
         <Enabled>true</Enabled>
       </AutoLogon>
       <FirstLogonCommands>

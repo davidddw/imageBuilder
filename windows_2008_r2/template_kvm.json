@@ -45,7 +45,7 @@
       "http_port_max": 10089,
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
-      "ssh_username": "administrator",
+      "ssh_username": "Administrator",
       "ssh_password": "yunshan3302",
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
       "floppy_files": [
