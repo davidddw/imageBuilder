@@ -286,7 +286,7 @@
         <HelpCustomized>false</HelpCustomized>
       </OEMInformation>
       <!-- Rename computer here. -->
-      <ComputerName>livecloud-2008R2</ComputerName>
+      <ComputerName>livecloud-2012</ComputerName>
       <TimeZone>Pacific Standard Time</TimeZone>
       <RegisteredOwner></RegisteredOwner>
     </component>
