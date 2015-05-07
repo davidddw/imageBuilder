@@ -113,8 +113,7 @@
       <FirstLogonCommands>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
-            -Force"
+            cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"
           </CommandLine>
           <Description>Set Execution Policy 64 Bit</Description>
           <Order>1</Order>
@@ -122,8 +121,7 @@
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy
-            RemoteSigned -Force"
+            C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"
           </CommandLine>
           <Description>Set Execution Policy 32 Bit</Description>
           <Order>2</Order>
@@ -213,8 +211,7 @@
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\
-            /v HideFileExt /t REG_DWORD /d 0 /f
+            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v HideFileExt /t REG_DWORD /d 0 /f
           </CommandLine>
           <Order>16</Order>
           <Description>Show file extensions in Explorer</Description>
@@ -226,32 +223,28 @@
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\
-            /v Start_ShowRun /t REG_DWORD /d 1 /f
+            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v Start_ShowRun /t REG_DWORD /d 1 /f
           </CommandLine>
           <Order>18</Order>
           <Description>Show Run command in Start Menu</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\
-            /v StartMenuAdminTools /t REG_DWORD /d 1 /f
+            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v StartMenuAdminTools /t REG_DWORD /d 1 /f
           </CommandLine>
           <Order>19</Order>
           <Description>Show Administrative Tools in Start Menu</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v
-            HibernateFileSizePercent /t REG_DWORD /d 0 /f
+            %SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateFileSizePercent /t REG_DWORD /d 0 /f
           </CommandLine>
           <Order>20</Order>
           <Description>Zero Hibernation File</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v
-            HibernateEnabled /t REG_DWORD /d 0 /f
+            %SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateEnabled /t REG_DWORD /d 0 /f
           </CommandLine>
           <Order>21</Order>
           <Description>Disable Hibernation Mode</Description>
@@ -263,8 +256,7 @@
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>
-            cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1
-            -AutoStart
+            cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart
           </CommandLine>
           <Description>Install OpenSSH</Description>
           <Order>99</Order>
@@ -316,6 +308,5 @@
       <SkipAutoActivation>true</SkipAutoActivation>
     </component>
   </settings>
-  <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows
-    server 2008 r2 serverdatacenter.clg"/>
+  <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows server 2008 r2 serverdatacenter.clg"/>
 </unattend>
