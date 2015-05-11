@@ -55,3 +55,44 @@ if ($process.ExitCode -eq 0){
 } else {
     Write-Host "InstallVirtIO failed"
 }
+
+$qga_download_url = "http://172.16.39.10/04_ISO/qemu-ga.64bit.msi"
+if (!(Test-Path "C:\Program Files\qemu-ga" )) {
+    Write-Host "Downloading $qga_download_url"
+    $msiFile = "C:\Windows\Temp\qemu-ga.64bit.msi"
+    ( New-Object System.Net.WebClient).DownloadFile( $qga_download_url , "$msiFile" )
+    $arguments = @(
+		"/i"
+		"`"$msiFile`""
+	    "/qn"
+		"/norestart"
+		"ALLUSERS=1"
+	)
+	Write-Host "Installing $msiFile....."
+	$process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
+	if ($process.ExitCode -eq 0){
+	    Write-Host "$msiFile has been successfully installed"
+	} else {
+    	Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
+	}
+	Start-Service "QEMU Guest Agent VSS Provider"
+	Start-Service "QEMU Guest Agent"
+}
+
+secedit /export /cfg C:\Windows\Temp\secpol.cfg
+(gc C:\Windows\Temp\secpol.cfg) -replace "PasswordComplexity = 1", "PasswordComplexity = 0" | Out-File C:\Windows\Temp\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg C:\Windows\Temp\secpol.cfg /areas SECURITYPOLICY
+rm -force C:\Windows\Temp\secpol.cfg -confirm:$false
+
+Write-Host "Clear password for Administrator User"
+$UserExist = [ADSI]::Exists("WinNT://livecloud-2008/Administrator")
+if ($UserExist) {
+	([ADSI]"WinNT://livecloud-2008/Administrator").SetPassword("")
+}
+
+$rar_download_url = "http://172.16.39.10/04_ISO/WinRAR5.21_x64sc.exe"
+if (!(Test-Path "C:\Program Files\OpenSSH1")) {
+    Write-Host "Downloading $rar_download_url"
+    (New-Object System.Net.WebClient).DownloadFile($ssh_download_url, "C:\Windows\Temp\winrar.exe")
+    Start-Process "C:\Windows\Temp\winrar.exe" "/S" -NoNewWindow -Wait
+}
