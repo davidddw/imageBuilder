@@ -79,12 +79,6 @@ if (!(Test-Path "C:\Program Files\qemu-ga" )) {
 	Start-Service "QEMU Guest Agent"
 }
 
-Write-Host "Clear password for Administrator User"
-$UserExist = [ADSI]::Exists("WinNT://livecloud-2008/Administrator")
-if ($UserExist) {
-	([ADSI]"WinNT://livecloud-2008/Administrator").SetPassword("")
-}
-
 $rar_download_url = "http://172.16.39.10/04_ISO/WinRAR5.21_x64sc.exe"
 if (!(Test-Path "C:\Program Files\WinRAR")) {
     Write-Host "Downloading $rar_download_url"
