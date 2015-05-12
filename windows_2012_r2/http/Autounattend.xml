@@ -31,14 +31,15 @@
       </DiskConfiguration>
       <UserData>
         <AcceptEula>true</AcceptEula>
-        <FullName>Vagrant Administrator</FullName>
-        <Organization>Vagrant Inc.</Organization>
+        <FullName>Livecloud Administrator</FullName>
+        <Organization>Livecloud Inc.</Organization>
         <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
         <ProductKey>
           <!-- Do not uncomment the Key element if you are using trial ISOs -->
           <!-- You must uncomment the Key element (and optionally insert your own key) if you
             are using retail or volume license ISOs -->
           <!--<Key>YC6KT-GKW9T-YTKYR-T4X34-R7VHC</Key>-->
+          <Key>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</Key>
           <WillShowUI>Never</WillShowUI>
         </ProductKey>
       </UserData>
@@ -93,19 +94,19 @@
       language="neutral" versionScope="nonSxS">
       <UserAccounts>
         <AdministratorPassword>
-          <Value>vagrant</Value>
+          <Value>yunshan3302</Value>
           <PlainText>true</PlainText>
         </AdministratorPassword>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Password>
-              <Value>vagrant</Value>
+              <Value>yunshan3302</Value>
               <PlainText>true</PlainText>
             </Password>
-            <Description>Vagrant User</Description>
-            <DisplayName>vagrant</DisplayName>
+            <Description>Livecloud User</Description>
+            <DisplayName>livecloud</DisplayName>
             <Group>administrators</Group>
-            <Name>vagrant</Name>
+            <Name>livecloud</Name>
           </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
@@ -116,25 +117,21 @@
       </OOBE>
       <AutoLogon>
         <Password>
-          <Value>vagrant</Value>
+          <Value>yunshan3302</Value>
           <PlainText>true</PlainText>
         </Password>
-        <Username>vagrant</Username>
+        <Username>Administrator</Username>
         <Enabled>true</Enabled>
       </AutoLogon>
       <FirstLogonCommands>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"
-          </CommandLine>
+          <CommandLine>cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
           <Description>Set Execution Policy 64 Bit</Description>
           <Order>1</Order>
           <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"
-          </CommandLine>
+          <CommandLine>C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
           <Description>Set Execution Policy 32 Bit</Description>
           <Order>2</Order>
           <RequiresUserInput>true</RequiresUserInput>
@@ -182,17 +179,13 @@
           <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            cmd.exe /c winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"}
-          </CommandLine>
+          <CommandLine>cmd.exe /c winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"}</CommandLine>
           <Description>Win RM listener Address/Port</Description>
           <Order>10</Order>
           <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            cmd.exe /c netsh advfirewall firewall set rule group="remote administration" new enable=yes
-          </CommandLine>
+          <CommandLine>cmd.exe /c netsh advfirewall firewall set rule group="远程管理" new enable=yes</CommandLine>
           <Description>Win RM adv firewall enable</Description>
           <Order>11</Order>
           <RequiresUserInput>true</RequiresUserInput>
@@ -222,9 +215,7 @@
           <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v HideFileExt /t REG_DWORD /d 0 /f
-          </CommandLine>
+          <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v HideFileExt /t REG_DWORD /d 0 /f</CommandLine>
           <Order>16</Order>
           <Description>Show file extensions in Explorer</Description>
         </SynchronousCommand>
@@ -234,30 +225,22 @@
           <Description>Enable QuickEdit mode</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v Start_ShowRun /t REG_DWORD /d 1 /f
-          </CommandLine>
+          <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v Start_ShowRun /t REG_DWORD /d 1 /f</CommandLine>
           <Order>18</Order>
           <Description>Show Run command in Start Menu</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v StartMenuAdminTools /t REG_DWORD /d 1 /f
-          </CommandLine>
+          <CommandLine>%SystemRoot%\System32\reg.exe ADD HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ /v StartMenuAdminTools /t REG_DWORD /d 1 /f</CommandLine>
           <Order>19</Order>
           <Description>Show Administrative Tools in Start Menu</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateFileSizePercent /t REG_DWORD /d 0 /f
-          </CommandLine>
+          <CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateFileSizePercent /t REG_DWORD /d 0 /f</CommandLine>
           <Order>20</Order>
           <Description>Zero Hibernation File</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            %SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateEnabled /t REG_DWORD /d 0 /f
-          </CommandLine>
+          <CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateEnabled /t REG_DWORD /d 0 /f</CommandLine>
           <Order>21</Order>
           <Description>Disable Hibernation Mode</Description>
         </SynchronousCommand>
@@ -267,9 +250,7 @@
           <Description>Disable password expiration for vagrant user</Description>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>
-            cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart
-          </CommandLine>
+          <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
           <Description>Install OpenSSH</Description>
           <Order>99</Order>
           <RequiresUserInput>true</RequiresUserInput>
@@ -288,7 +269,7 @@
       <!-- Rename computer here. -->
       <ComputerName>livecloud-2012</ComputerName>
       <TimeZone>Pacific Standard Time</TimeZone>
-      <RegisteredOwner></RegisteredOwner>
+      <RegisteredOwner/>
     </component>
     <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64"
