@@ -1,109 +1,32 @@
 <?xml version="1.0"?>
 <!DOCTYPE profile>
-<!-- based on https://github.com/crowbar/crowbar/blob/master/opensuse-13.1-extra/autoinst.xml -->
+<!-- http://doc.opensuse.org/projects/autoyast/configuration.html -->
 <profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
-  <add-on>
-    <add_on_products config:type="list">
-      <listentry>
-        <media_url>http://ftp.cn.debian.org/opensuse/update/13.2/</media_url>
-        <product>openSUSE_13.2_Update</product>
-        <product_dir>/</product_dir>
-      </listentry>
-    </add_on_products>
-  </add-on>
-  
-  <bootloader>
-    <device_map config:type="list"/>
-    <global>
-      <activate>true</activate>
-      <append>/vmlinuz root=/dev/sda1 splash=silent showopts</append>
-      <append_failsafe/>
-      <boot_boot>true</boot_boot>
-      <boot_custom/>
-      <boot_extended>false</boot_extended>
-      <boot_mbr>true</boot_mbr>
-      <boot_root>true</boot_root>
-      <default/>
-      <distributor/>
-      <generic_mbr>false</generic_mbr>
-      <gfxmode>auto</gfxmode>
-      <gfxtheme/>
-      <hiddenmenu>false</hiddenmenu>
-      <os_prober>false</os_prober>
-      <terminal>console</terminal>
-      <timeout config:type="integer">0</timeout>
-      <vgamode/>
-    </global>
-    <loader_type>grub2</loader_type>
-    <sections config:type="list"/>
-  </bootloader>
-  <partitioning config:type="list">
-    <drive>
-      <initialize config:type="boolean">true</initialize>
-      <partitions config:type="list">
-        <partition>
-          <create config:type="boolean">true</create>
-          <crypt_fs config:type="boolean">false</crypt_fs>
-          <filesystem config:type="symbol">ext4</filesystem>
-          <filesystem_id config:type="integer">131</filesystem_id>
-          <format config:type="boolean">true</format>
-          <fstopt>defaults,discard</fstopt>
-          <loop_fs config:type="boolean">false</loop_fs>
-          <mount>/</mount>
-          <mountby config:type="symbol">device</mountby>
-          <partition_id config:type="integer">131</partition_id>
-          <partition_nr config:type="integer">1</partition_nr>
-          <resize config:type="boolean">false</resize>
-          <size>max</size>
-        </partition>
-      </partitions>
-      <type config:type="symbol">CT_DISK</type>
-      <use>all</use>
-    </drive>
-  </partitioning>
-  <firewall>
-    <enable_firewall config:type="boolean">false</enable_firewall>
-    <start_firewall config:type="boolean">false</start_firewall>
-  </firewall>
-  <deploy_image>
-    <image_installation config:type="boolean">false</image_installation>
-  </deploy_image>
-  <networking>
-    <keep_install_network config:type="boolean">true</keep_install_network>
-    <dns>
-      <dhcp_hostname config:type="boolean">true</dhcp_hostname>
-      <dhcp_resolv config:type="boolean">true</dhcp_resolv>
-    </dns>
-    <interfaces config:type="list">
-      <interface>
-        <bootproto>dhcp</bootproto>
-        <device>eth0</device>        
-        <startmode>onboot</startmode>
-      </interface>
-    </interfaces>
-  </networking>
   <general>
-    <ask-list config:type="list"/>
-    <proposals config:type="list"/>
     <mode>
       <confirm config:type="boolean">false</confirm>
-      <final_halt config:type="boolean">false</final_halt>
+      <forceboot config:type="boolean">true</forceboot>
       <final_reboot config:type="boolean">false</final_reboot>
-      <halt config:type="boolean">false</halt>
-      <second_stage config:type="boolean">true</second_stage>
     </mode>
   </general>
-  <users config:type="list">
-    <user>
-      <encrypted config:type="boolean">false</encrypted>
-      <user_password>yunshan3302</user_password>
-      <username>root</username>
-    </user>
-  </users>
-  <timezone>
-    <hwclock>UTC</hwclock>
-    <timezone>Asia/Shanghai</timezone>
-  </timezone>
+  <report>
+    <messages>
+      <show config:type="boolean">false</show>
+      <timeout config:type="integer">10</timeout>
+      <log config:type="boolean">true</log>
+    </messages>
+    <warnings>
+      <show config:type="boolean">false</show>
+      <timeout config:type="integer">10</timeout>
+      <log config:type="boolean">true</log>
+    </warnings>
+    <errors>
+      <show config:type="boolean">false</show>
+      <timeout config:type="integer">10</timeout>
+      <log config:type="boolean">true</log>
+    </errors>
+  </report>
+
   <keyboard>
     <keymap>english-us</keymap>
   </keyboard>
@@ -111,83 +34,162 @@
     <language>en_US</language>
     <languages>en_US</languages>
   </language>
-  <report>
-    <errors>
-      <log config:type="boolean">true</log>
-      <show config:type="boolean">true</show>
-      <timeout config:type="integer">0</timeout>
-    </errors>
-    <messages>
-      <log config:type="boolean">true</log>
-      <show config:type="boolean">true</show>
-      <timeout config:type="integer">0</timeout>
-    </messages>
-    <warnings>
-      <log config:type="boolean">true</log>
-      <show config:type="boolean">true</show>
-      <timeout config:type="integer">0</timeout>
-    </warnings>
-    <yesno_messages>
-      <log config:type="boolean">true</log>
-      <show config:type="boolean">true</show>
-      <timeout config:type="integer">0</timeout>
-    </yesno_messages>
-  </report>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Asia/Shanghai</timezone>
+  </timezone>
+  <partitioning config:type="list">
+    <drive>
+      <device>/dev/vda</device>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>swap</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <raid_options/>
+          <resize config:type="boolean">false</resize>
+          <size>512M</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">xfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <raid_options/>
+          <resize config:type="boolean">false</resize>
+          <size>max</size>
+          <subvolumes config:type="list">
+            <listentry>boot/grub2/i386-pc</listentry>
+            <listentry>boot/grub2/x86_64-efi</listentry>
+            <listentry>home</listentry>
+            <listentry>opt</listentry>
+            <listentry>srv</listentry>
+            <listentry>tmp</listentry>
+            <listentry>usr/local</listentry>
+            <listentry>var/crash</listentry>
+            <listentry>var/lib/mailman</listentry>
+            <listentry>var/lib/named</listentry>
+            <listentry>var/lib/pgsql</listentry>
+            <listentry>var/log</listentry>
+            <listentry>var/opt</listentry>
+            <listentry>var/spool</listentry>
+            <listentry>var/tmp</listentry>
+          </subvolumes>
+        </partition>
+      </partitions>
+      <pesize/>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <bootloader>
+    <loader_type>grub2</loader_type>
+  </bootloader>
+  <networking>
+    <ipv6 config:type="boolean">false</ipv6>
+    <keep_install_network config:type="boolean">true</keep_install_network>
+    <dns>
+      <dhcp_hostname config:type="boolean">true</dhcp_hostname>
+      <dhcp_resolv config:type="boolean">true</dhcp_resolv>
+      <domain>yunshan.com</domain>
+      <hostname>opensuse-13.2-x64</hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bootproto>dhcp</bootproto>
+        <device>eth0</device>
+        <startmode>onboot</startmode>
+      </interface>
+    </interfaces>
+  </networking>
+  <firewall>
+    <enable_firewall config:type="boolean">true</enable_firewall>
+    <start_firewall config:type="boolean">true</start_firewall>
+  </firewall>
   <software>
     <image/>
-    <packages config:type="list">
-      <package>grub2</package>
-      <package>glibc-locale</package>
-      <package>iputils</package>
-      <package>kernel-default</package>
-      <package>less</package>
-      <package>vim</package>
-      <package>sudo</package>
-      <package>screen</package>
-      <package>yast2</package>
-      <package>yast2-firstboot</package>
-      <package>zypper</package>
-      <package>open-vm-tools</package>
-      <package>yast2-trans-en_US</package>
-      <package>wget</package>
-      <package>curl</package>
-      <package>iproute2</package>
-      <package>openssh</package>
-      <package>e2fsprogs</package>
-      <package>acpid</package>
-    </packages>
-    <do_online_update config:type="boolean">true</do_online_update>
-    <instsource>http://ftp.cn.debian.org/opensuse/distribution/13.2/repo/oss/</instsource>
+    <instsource/>
     <patterns config:type="list">
-      <pattern>base</pattern>
-      <pattern>sw_management</pattern>
-      <pattern>yast2_install_wf</pattern>
+      <pattern>Minimal</pattern>
     </patterns>
   </software>
+  <runlevel>
+    <default>3</default>
+    <services config:type="list">
+      <service>
+        <service_name>sshd</service_name>
+        <service_start>enable</service_start>
+        <service_start>3 5</service_start>
+      </service>
+    </services>
+  </runlevel>
   <scripts>
-    <chroot-scripts config:type="list">
+    <post-scripts config:type="list">
       <script>
-      <chrooted config:type="boolean">true</chrooted>
-      <source><![CDATA[#!/bin/sh
-rm -f /etc/udev/rules.d/70-persistent-net.rules
-mkdir /etc/udev/rules.d/70-persistent-net.rules
-rm -f /lib/udev/rules.d/75-persistent-net-generator.rules
-rm -rf /dev/.udev/ /var/lib/dhcpcd/*
-]]></source>
+        <source>
+          <![CDATA[
+            # the runlevel/services xml does not work
+            systemctl enable sshd
+          ]]>
+        </source>
       </script>
-    </chroot-scripts>
-    <init-scripts config:type="list">
-      <script>
-        <debug config:type="boolean">true</debug>
-        <filename>prepare.sh</filename>
-        <interpreter>shell</interpreter>
-        <source><![CDATA[#!/bin/sh
-rm /etc/sysconfig/network/ifcfg-enp*
-service wicked restart
-service sshd restart
-]]></source>
-      </script>
-    </init-scripts>
+    </post-scripts>
   </scripts>
+  <groups config:type="list">
+    <group>
+      <gid>100</gid>
+      <groupname>users</groupname>
+      <userlist/>
+    </group>
+  </groups>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults> 
+  <users config:type="list">
+    <user>
+      <user_password>yunshan3302</user_password>
+      <username>root</username>
+    </user>
+    <user>
+      <fullname>packer</fullname>
+      <gid>100</gid>
+      <home>/home/packer</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact>-1</inact>
+        <max>99999</max>
+        <min>0</min>
+        <warn>7</warn>
+      </password_settings>
+      <shell>/bin/bash</shell>
+      <uid>1000</uid>
+      <user_password>yunshan3302</user_password>
+      <username>packer</username>
+    </user> 
+  </users>
+  <kdump>
+    <add_crash_kernel config:type="boolean">false</add_crash_kernel>
+  </kdump>
 </profile>
-
