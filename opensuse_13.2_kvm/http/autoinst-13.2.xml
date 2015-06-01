@@ -123,7 +123,7 @@
     <image/>
     <instsource/>
     <patterns config:type="list">
-      <pattern>Minimal</pattern>
+      <pattern>minimal_base</pattern>
     </patterns>
   </software>
   <runlevel>
