@@ -1,0 +1,65 @@
+{
+  "min_packer_version": "0.6.0",
+  "variables": {
+    "build_name": "{{env `BUILD_NAME`}}",
+    "build_version": "{{env `BUILD_VERSION`}}",
+    "core": 1,
+    "memory": 1024,
+    "disk_size": 51200,
+    "ssh_port": 22,
+    "ssh_wait_timeout": "10000s",
+    "iso_url": "http://172.16.39.10/04_ISO/openSUSE-13.2-DVD-x86_64.iso",
+    "iso_md5": "350b8cb014a4e342cc9a7cc9df891b99",
+    "vm_name": "{{env `VM_NAME`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `build_name`}}-{{user `build_version`}}",
+      "type": "qemu",
+      "format": "qcow2",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_md5`}}",
+      "iso_checksum_type": "md5",
+      "output_directory": "disk",
+      "shutdown_command": "shutdown -h now",
+      "qemu_binary": "/usr/bin/qemu-kvm",
+      "qemuargs": [
+          [ "-m", "size={{user `memory`}}" ],
+          [ "-smp", "2,sockets=2,cores={{user `core`}},threads=1" ]
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "http_directory": "http",
+      "headless": true,
+      "vm_name": "{{user `vm_name`}}",
+      "net_device": "virtio-net",
+      "disk_interface": "scsi",
+      "boot_wait": "5s",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "root",
+      "ssh_password": "yunshan3302",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "ssh_port": "{{user `ssh_port`}}",
+      "boot_command":
+      [
+        "<esc><enter><wait>",
+        "linux netsetup=dhcp lang=en_US hostname=build netdevice=eth0",
+        " autoyast=http://{{.HTTPIP}}:{{.HTTPPort}}/autoinst-13.2.xml",
+        " textmode=1 insecure=1<wait><enter><wait>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+          "scripts/base.sh",
+          "scripts/zerodisk.sh",
+          "scripts/custom_kvm.sh",
+          "scripts/cleanup.sh"
+      ]
+    }
+  ]
+}
