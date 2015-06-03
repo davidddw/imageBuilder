@@ -40,85 +40,44 @@
   </timezone>
   <partitioning config:type="list">
     <drive>
-      <device>/dev/sda</device>
       <initialize config:type="boolean">true</initialize>
-      <partitions config:type="list">
-        <partition>
-          <create config:type="boolean">true</create>
-          <crypt_fs config:type="boolean">false</crypt_fs>
-          <filesystem config:type="symbol">swap</filesystem>
-          <format config:type="boolean">true</format>
-          <fstopt>defaults</fstopt>
-          <loop_fs config:type="boolean">false</loop_fs>
-          <mount>swap</mount>
-          <mountby config:type="symbol">device</mountby>
-          <partition_id config:type="integer">130</partition_id>
-          <partition_nr config:type="integer">1</partition_nr>
-          <raid_options/>
-          <resize config:type="boolean">false</resize>
-          <size>512M</size>
-        </partition>
-        <partition>
-          <create config:type="boolean">true</create>
-          <crypt_fs config:type="boolean">false</crypt_fs>
-          <filesystem config:type="symbol">xfs</filesystem>
-          <format config:type="boolean">true</format>
-          <loop_fs config:type="boolean">false</loop_fs>
-          <mount>/</mount>
-          <mountby config:type="symbol">device</mountby>
-          <partition_id config:type="integer">131</partition_id>
-          <partition_nr config:type="integer">2</partition_nr>
-          <raid_options/>
-          <resize config:type="boolean">false</resize>
-          <size>max</size>
-          <subvolumes config:type="list">
-            <listentry>boot/grub2/i386-pc</listentry>
-            <listentry>boot/grub2/x86_64-efi</listentry>
-            <listentry>home</listentry>
-            <listentry>opt</listentry>
-            <listentry>srv</listentry>
-            <listentry>tmp</listentry>
-            <listentry>usr/local</listentry>
-            <listentry>var/crash</listentry>
-            <listentry>var/lib/mailman</listentry>
-            <listentry>var/lib/named</listentry>
-            <listentry>var/lib/pgsql</listentry>
-            <listentry>var/log</listentry>
-            <listentry>var/opt</listentry>
-            <listentry>var/spool</listentry>
-            <listentry>var/tmp</listentry>
-          </subvolumes>
-        </partition>
-      </partitions>
-      <pesize/>
-      <type config:type="symbol">CT_DISK</type>
       <use>all</use>
     </drive>
   </partitioning>
   <bootloader>
     <loader_type>grub2</loader_type>
   </bootloader>
+ 
   <networking>
-    <ipv6 config:type="boolean">false</ipv6>
-    <keep_install_network config:type="boolean">true</keep_install_network>
+    <dhcp_options>
+      <dhclient_client_id/>
+      <dhclient_hostname_option>AUTO</dhclient_hostname_option>
+    </dhcp_options>
     <dns>
-      <dhcp_hostname config:type="boolean">true</dhcp_hostname>
-      <dhcp_resolv config:type="boolean">true</dhcp_resolv>
+      <dhcp_hostname config:type="boolean">false</dhcp_hostname>
       <domain>yunshan.com</domain>
       <hostname>opensuse-12</hostname>
+      <resolv_conf_policy>auto</resolv_conf_policy>
+      <write_hostname config:type="boolean">true</write_hostname>
     </dns>
     <interfaces config:type="list">
       <interface>
         <bootproto>dhcp</bootproto>
         <device>eth0</device>
-        <startmode>onboot</startmode>
+        <name>82540EM Gigabit Ethernet Controller</name>
+        <startmode>auto</startmode>
       </interface>
     </interfaces>
+    <ipv6 config:type="boolean">false</ipv6>
+    <keep_install_network config:type="boolean">false</keep_install_network>
+    <managed config:type="boolean">false</managed>
   </networking>
+
   <firewall>
-    <enable_firewall config:type="boolean">true</enable_firewall>
+    <enable_firewall config:type="boolean">false</enable_firewall>
     <start_firewall config:type="boolean">true</start_firewall>
   </firewall>
+  
   <software>
     <image/>
     <instsource/>
