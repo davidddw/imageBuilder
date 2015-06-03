@@ -40,7 +40,7 @@
   </timezone>
   <partitioning config:type="list">
     <drive>
-      <device>/dev/vda</device>
+      <device>/dev/sda</device>
       <initialize config:type="boolean">true</initialize>
       <partitions config:type="list">
         <partition>
@@ -105,7 +105,7 @@
       <dhcp_hostname config:type="boolean">true</dhcp_hostname>
       <dhcp_resolv config:type="boolean">true</dhcp_resolv>
       <domain>yunshan.com</domain>
-      <hostname>opensuse-13</hostname>
+      <hostname>opensuse-12</hostname>
     </dns>
     <interfaces config:type="list">
       <interface>
