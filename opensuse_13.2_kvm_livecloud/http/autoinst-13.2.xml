@@ -42,70 +42,58 @@
   <partitioning config:type="list">
     <drive>
       <device>/dev/sda</device>
+      <disklabel>msdos</disklabel>
+      <enable_snapshots config:type="boolean">true</enable_snapshots> 
       <initialize config:type="boolean">true</initialize>
       <partitions config:type="list">
         <partition>
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
-          <filesystem config:type="symbol">swap</filesystem>
-          <format config:type="boolean">true</format>
-          <fstopt>defaults</fstopt>
-          <loop_fs config:type="boolean">false</loop_fs>
-          <mount>swap</mount>
-          <mountby config:type="symbol">device</mountby>
-          <partition_id config:type="integer">130</partition_id>
-          <partition_nr config:type="integer">1</partition_nr>
-          <raid_options/>
-          <resize config:type="boolean">false</resize>
-          <size>512M</size>
-        </partition>
-        <partition>
-          <create config:type="boolean">true</create>
-          <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">xfs</filesystem>
-          <format config:type="boolean">true</format>
-          <fstopt>acl,user_xattr</fstopt>
-          <loop_fs config:type="boolean">false</loop_fs>
-          <mount>/boot</mount>
-          <mountby config:type="symbol">device</mountby>
-          <partition_id config:type="integer">131</partition_id>
-          <partition_nr config:type="integer">2</partition_nr>
-          <resize config:type="boolean">false</resize>
-          <size>120M</size>
-        </partition>
-        <partition>
-          <create config:type="boolean">true</create>
-          <crypt_fs config:type="boolean">false</crypt_fs>
-          <filesystem config:type="symbol">xfs</filesystem>
-          <filesystem_id config:type="integer">142</filesystem_id>
           <format config:type="boolean">false</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <lvm_group>system</lvm_group>
           <mountby config:type="symbol">device</mountby>
           <partition_id config:type="integer">142</partition_id>
-          <partition_nr config:type="integer">3</partition_nr>
+          <partition_nr config:type="integer">1</partition_nr>
           <resize config:type="boolean">false</resize>
           <size>max</size>
         </partition>
       </partitions>
+      <pesize/> 
       <type config:type="symbol">CT_DISK</type>
       <use>all</use>
     </drive>
     <drive>
       <device>/dev/system</device>
       <initialize config:type="boolean">true</initialize>
+      <disklabel>msdos</disklabel>
+      <enable_snapshots config:type="boolean">true</enable_snapshots>
       <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs> 
+          <lv_name>swap</lv_name>
+          <mount>swap</mount> 
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">130</partition_id>
+         <partition_nr config:type="integer">1</partition_nr> 
+          <resize config:type="boolean">false</resize>
+          <size>512M</size>
+        </partition> 
         <partition>
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">xfs</filesystem>
           <format config:type="boolean">true</format>
-          <fstopt>acl,user_xattr</fstopt>
           <loop_fs config:type="boolean">false</loop_fs>
           <lv_name>root</lv_name>
           <mount>/</mount>
           <mountby config:type="symbol">device</mountby>
-          <partition_id config:type="integer">131</partition_id>
+         <partition_nr config:type="integer">1</partition_nr> 
           <resize config:type="boolean">false</resize>
           <size>max</size>
         </partition>
@@ -121,6 +109,7 @@
   <networking>
     <ipv6 config:type="boolean">false</ipv6>
     <keep_install_network config:type="boolean">true</keep_install_network>
+    <managed config:type="boolean">false</managed> 
     <dns>
       <dhcp_hostname config:type="boolean">true</dhcp_hostname>
       <dhcp_resolv config:type="boolean">true</dhcp_resolv>
@@ -131,6 +120,7 @@
       <interface>
         <bootproto>dhcp</bootproto>
         <device>eth0</device>
+        <dhclient_set_default_route>yes</dhclient_set_default_route> 
         <startmode>onboot</startmode>
       </interface>
     </interfaces>
@@ -142,8 +132,26 @@
   <software>
     <image/>
     <instsource/>
+    <packages config:type="list">
+      <package>numactl</package>
+      <package>grub2</package>
+      <package>glibc</package>
+      <package>lvm2</package>
+      <package>vim</package>
+      <package>wget</package>
+      <package>iproute2</package> 
+      <package>syslinux</package>
+      <package>irqbalance</package>
+      <package>perl-Bootloader-YAML</package>
+      <package>SuSEfirewall2</package>
+      <package>kexec-tools</package>
+      <package>openSUSE-release</package> 
+      <package>libgthread-2_0-0</package>
+    </packages>
     <patterns config:type="list">
-      <pattern>minimal_base</pattern>
+      <pattern>base</pattern>
+      <pattern>yast2_install_wf</pattern>
+      <pattern>sw_management</pattern>
     </patterns>
   </software>
   <runlevel>
@@ -159,9 +167,10 @@
   <scripts>
     <post-scripts config:type="list">
       <script>
-        <source>
-          <![CDATA[ # the runlevel/services xml does not work systemctl enable sshd ]]>
-        </source>
+        <source><![CDATA[#!/bin/bash
+#the runlevel/services xml does not work 
+systemctl enable sshd        
+     ]]></source>
       </script>
     </post-scripts>
   </scripts>
