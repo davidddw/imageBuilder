@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE profile>
 <!-- http://doc.opensuse.org/projects/autoyast/configuration.html -->
-<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+<profile xmlns="http://www.suse.com/1.0/yast2ns"
+  xmlns:config="http://www.suse.com/1.0/configns">
   <general>
     <mode>
       <confirm config:type="boolean">false</confirm>
@@ -26,7 +27,7 @@
       <log config:type="boolean">true</log>
     </errors>
   </report>
-
+  
   <keyboard>
     <keymap>english-us</keymap>
   </keyboard>
@@ -40,39 +41,111 @@
   </timezone>
   <partitioning config:type="list">
     <drive>
+      <device>/dev/sda</device>
       <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>swap</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <raid_options/>
+          <resize config:type="boolean">false</resize>
+          <size>512M</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/boot</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>120M</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <filesystem_id config:type="integer">142</filesystem_id>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lvm_group>system</lvm_group>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>max</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/system</device>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lv_name>root</lv_name>
+          <mount>/</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+          <size>max</size>
+        </partition>
+      </partitions>
+      <pesize>4M</pesize>
+      <type config:type="symbol">CT_LVM</type>
       <use>all</use>
     </drive>
   </partitioning>
   <bootloader>
     <loader_type>grub2</loader_type>
   </bootloader>
- 
+  
   <networking>
     <dhcp_options>
       <dhclient_client_id/>
       <dhclient_hostname_option>AUTO</dhclient_hostname_option>
     </dhcp_options>
     <dns>
-      <dhcp_hostname config:type="boolean">false</dhcp_hostname>
+      <dhcp_hostname config:type="boolean">true</dhcp_hostname>
+      <dhcp_resolv config:type="boolean">true</dhcp_resolv>
       <domain>yunshan.com</domain>
       <hostname>opensuse-12</hostname>
-      <resolv_conf_policy>auto</resolv_conf_policy>
-      <write_hostname config:type="boolean">true</write_hostname>
     </dns>
     <interfaces config:type="list">
       <interface>
         <bootproto>dhcp</bootproto>
         <device>eth0</device>
-        <name>82540EM Gigabit Ethernet Controller</name>
-        <startmode>auto</startmode>
+        <prefixlen>16</prefixlen>
+        <startmode>onboot</startmode>
+        <usercontrol>no</usercontrol>
       </interface>
     </interfaces>
     <ipv6 config:type="boolean">false</ipv6>
-    <keep_install_network config:type="boolean">false</keep_install_network>
     <managed config:type="boolean">false</managed>
+    <routing>
+      <ip_forward config:type="boolean">false</ip_forward>
+    </routing>
   </networking>
-
+  
   <firewall>
     <enable_firewall config:type="boolean">false</enable_firewall>
     <start_firewall config:type="boolean">true</start_firewall>
@@ -99,10 +172,7 @@
     <post-scripts config:type="list">
       <script>
         <source>
-          <![CDATA[
-            # the runlevel/services xml does not work
-            systemctl enable sshd
-          ]]>
+          <![CDATA[ # the runlevel/services xml does not work systemctl enable sshd ]]>
         </source>
       </script>
     </post-scripts>
@@ -124,7 +194,7 @@
     <shell>/bin/bash</shell>
     <skel>/etc/skel</skel>
     <umask>022</umask>
-  </user_defaults> 
+  </user_defaults>
   <users config:type="list">
     <user>
       <user_password>yunshan3302</user_password>
@@ -146,7 +216,7 @@
       <uid>1000</uid>
       <user_password>yunshan3302</user_password>
       <username>packer</username>
-    </user> 
+    </user>
   </users>
   <kdump>
     <add_crash_kernel config:type="boolean">false</add_crash_kernel>
