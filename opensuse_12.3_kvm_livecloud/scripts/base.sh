@@ -1,5 +1,6 @@
 # Base install
 
+sleep 30
 rm -f /etc/zypp/repos.d/openSUSE-12.3-0.repo
 rpm --import http://mirror.bit.edu.cn/opensuse/distribution/12.3/repo/oss/gpg-pubkey-3dbdc284-4be1884d.asc
 rpm --import http://mirror.bit.edu.cn/opensuse/distribution/12.3/repo/oss/gpg-pubkey-307e3d54-4be01a65.asc

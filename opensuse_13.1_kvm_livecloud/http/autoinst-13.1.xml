@@ -27,7 +27,6 @@
       <log config:type="boolean">true</log>
     </errors>
   </report>
-  
   <keyboard>
     <keymap>english-us</keymap>
   </keyboard>
@@ -41,49 +40,76 @@
   </timezone>
   <partitioning config:type="list">
     <drive>
-      <device>/dev/sda</device>
-      <initialize config:type="boolean">true</initialize>
-      <partitions config:type="list">
-        <partition>
-          <label>boot</label>
-          <mount>/boot</mount>
-          <mountby config:type="symbol">label</mountby>
-          <partition_type>primary</partition_type>
-          <size>200M</size>
-        </partition>
-        <partition>
-          <label>system</label>
-          <lvm_group>system</lvm_group>
-          <partition_type>primary</partition_type>
-          <size>max</size>
-        </partition>
-      </partitions>
-      <use>all</use>
-    </drive>
-    <drive>
       <device>/dev/system</device>
       <initialize config:type="boolean">true</initialize>
-      <is_lvm_vg config:type="boolean">true</is_lvm_vg>
       <partitions config:type="list">
         <partition>
-          <label>swap</label>
-          <mountby config:type="symbol">label</mountby>
-          <filesystem config:type="symbol">swap</filesystem>
-          <lv_name>swap</lv_name>
-          <mount>swap</mount>
-          <size>2G</size>
-        </partition>
-        <partition>
-          <label>root</label>
-          <mountby config:type="symbol">label</mountby>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
           <lv_name>root</lv_name>
           <mount>/</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
           <size>max</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lv_name>swap</lv_name>
+          <mount>swap</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <resize config:type="boolean">false</resize>
+          <size>2G</size>
         </partition>
       </partitions>
       <pesize>4M</pesize>
       <type config:type="symbol">CT_LVM</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sda</device>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/boot</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>512M</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lvm_group>system</lvm_group>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>max</size>
+        </partition>
+      </partitions>
+      <pesize/>
+      <type config:type="symbol">CT_DISK</type>
       <use>all</use>
     </drive>
   </partitioning>

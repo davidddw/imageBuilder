@@ -1,1 +1,1 @@
-rm -fr /etc/yum.repos.d/custom.repo
+rm -f /etc/zypp/repos.d/openSUSE-13.2-0.repo
