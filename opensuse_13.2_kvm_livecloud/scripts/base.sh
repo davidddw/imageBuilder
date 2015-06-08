@@ -8,6 +8,7 @@ zypper ar http://mirror.bit.edu.cn/opensuse/distribution/13.2/repo/non-oss/ open
 zypper refresh
 zypper -n install libgthread-2_0-0
 systemctl enable sshd
+systemctl disable NetworkManager
 systemctl enable wicked
 echo "UseDNS no" >> /etc/ssh/sshd_config
 echo "GSSAPIAuthentication no" >> /etc/ssh/sshd_config

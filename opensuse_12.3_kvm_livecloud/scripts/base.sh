@@ -7,8 +7,9 @@ rpm --import http://mirror.bit.edu.cn/opensuse/distribution/12.3/repo/oss/gpg-pu
 zypper ar http://mirror.bit.edu.cn/opensuse/distribution/12.3/repo/oss/ opensuse-12.3-oss
 zypper ar http://mirror.bit.edu.cn/opensuse/distribution/12.3/repo/non-oss/ opensuse-12.3-non-oss
 zypper refresh
-zypper -n install libgthread-2_0-0
+zypper -n install libgthread-2_0-0 python-xml
 systemctl enable sshd
+systemctl disable NetworkManager
 systemctl enable wicked
 echo "UseDNS no" >> /etc/ssh/sshd_config
 echo "GSSAPIAuthentication no" >> /etc/ssh/sshd_config
