@@ -2,7 +2,7 @@
 <!DOCTYPE profile>
 <!-- http://doc.opensuse.org/projects/autoyast/configuration.html -->
 <profile xmlns="http://www.suse.com/1.0/yast2ns"
-  xmlns:config="http://www.suse.com/1.0/configns">
+  xmlns:config="http://www.suse.com/1.0/configns"> 
   <general>
     <mode>
       <confirm config:type="boolean">false</confirm>
@@ -92,7 +92,7 @@
           <partition_id config:type="integer">131</partition_id>
           <partition_nr config:type="integer">1</partition_nr>
           <resize config:type="boolean">false</resize>
-          <size>512M</size>
+          <size>200M</size>
         </partition>
         <partition>
           <create config:type="boolean">true</create>
