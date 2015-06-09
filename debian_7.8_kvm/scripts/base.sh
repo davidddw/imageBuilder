@@ -20,14 +20,10 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-alias bcs='find . -name "*.h" -o -name "*.c" -o -name "*.cpp" > cscope.files && cscope -Rbkq -i cscope.files && ctags -R --fields=+lS .'
-alias bgrep='find . -regex ".*\.\([ch]\|sh\|py\)" | xargs grep -nr --color=auto'
-alias cgrep='find . -regex ".*\.\([ch]\)" | xargs grep -nr --color=auto'
 alias grep='grep --color=auto'
 alias l.='ls -d .* --color=auto'
 alias ll='ls -l --color=auto'
 alias ls='ls --color=auto'
-alias hook='scp -p -P 29418 david@10.33.2.200:hooks/commit-msg .git/hooks/'
 export EDITOR=vim
 export VISUAL=vim
 EOF
