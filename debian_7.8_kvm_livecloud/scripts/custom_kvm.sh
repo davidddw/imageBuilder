@@ -129,3 +129,5 @@ sed -i -e 's#GRUB_CMDLINE_LINUX=.*$#GRUB_CMDLINE_LINUX="text console=tty0 consol
 /usr/sbin/update-grub
 sed -i 's@#T0.*@T0:23:respawn:/sbin/getty -L ttyS0 115200 vt100@' /etc/inittab
 
+# delete nic config
+sed -i '/eth0/,$d' /etc/network/interfaces

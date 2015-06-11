@@ -38,4 +38,5 @@ sed -i -e 's#GRUB_CMDLINE_LINUX=.*$#GRUB_CMDLINE_LINUX="text console=tty0 consol
 -e 's#GRUB_CMDLINE_LINUX_DEFAULT="quiet"#GRUB_CMDLINE_LINUX_DEFAULT=""#' /etc/default/grub
 /usr/sbin/update-grub
 
-
+# delete nic config
+sed -i '/eth0/,$d' /etc/network/interfaces

@@ -54,3 +54,6 @@ stop on runlevel [!2345]
 respawn
 exec /sbin/getty -8 115200 ttyS0
 EOF
+
+# delete nic config
+sed -i '/eth0/,$d' /etc/network/interfaces

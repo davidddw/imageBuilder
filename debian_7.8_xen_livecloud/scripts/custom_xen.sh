@@ -28,3 +28,6 @@ mount /dev/sr0 /mnt
 
 # modify grub
 sed -i 's#quiet#quiet console=hvc0#' /boot/grub/grub.conf
+
+# delete nic config
+sed -i '/eth0/,$d' /etc/network/interfaces
