@@ -3,12 +3,11 @@ deb http://ftp.cn.debian.org/debian/ jessie main contrib non-free
 deb-src http://ftp.cn.debian.org/debian/ jessie main contrib non-free
 deb http://ftp.cn.debian.org/debian-security/ jessie/updates main
 deb-src http://ftp.cn.debian.org/debian-security/ jessie/updates main
-deb http://10.33.39.10/00_mirrors/jessie/ sid main
 EOF
 apt-get update
 apt-get install -y --force-yes chkconfig libglib2.0-0 curl stress tcpdump \
 hping3 netperf iperf nmap mtr redis-server openjdk-7-jdk apache2-utils parted \
-gdisk nginx sshpass linux-image-amd64
+gdisk nginx sshpass
 
 cat <<'EOF' > /root/.bashrc
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
