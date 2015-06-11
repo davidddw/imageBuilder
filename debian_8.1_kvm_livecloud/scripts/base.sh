@@ -1,4 +1,8 @@
 cat <<'EOF' > /etc/apt/sources.list
+deb http://ftp.cn.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.cn.debian.org/debian/ jessie main contrib non-free
+deb http://ftp.cn.debian.org/debian-security/ jessie/updates main
+deb-src http://ftp.cn.debian.org/debian-security/ jessie/updates main
 deb http://10.33.39.10/00_mirrors/jessie/ sid main
 EOF
 apt-get update
