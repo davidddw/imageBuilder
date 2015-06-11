@@ -40,3 +40,10 @@ sed -i -e 's#GRUB_CMDLINE_LINUX=.*$#GRUB_CMDLINE_LINUX="text console=tty0 consol
 
 # delete nic config
 sed -i '/eth0/,$d' /etc/network/interfaces
+
+# update linux-4.0
+cd /tmp
+wget http://10.33.39.10/04_ISO/linux-4.0.tar.gz && \
+tar zxf linux-4.0.tar.gz && \
+dpkg -i *.deb
+rm -fr /tmp/*
