@@ -36,8 +36,8 @@
     AutoUsers=50
 
 [TapiLocation]
- 　　CountryCode=86
- 　　Dialing=Tone
+	CountryCode=86
+	Dialing=Tone
 
 [Identification]
     JoinWorkgroup=WORKGROUP

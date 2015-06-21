@@ -20,6 +20,8 @@ enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 EOF
 
+yum --disablerepo=\* --enablerepo=centos7 -y groupinstall 'Infrastructure Server'
+
 yum --disablerepo=\* --enablerepo=centos7,epel7 -y install vim openssh-clients \
 wget net-tools tcpdump
 
