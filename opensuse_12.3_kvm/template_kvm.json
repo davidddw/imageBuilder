@@ -1,5 +1,4 @@
 {
-  "min_packer_version": "0.7.0",
   "variables": {
     "build_name": "{{env `BUILD_NAME`}}",
     "build_version": "{{env `BUILD_VERSION`}}",
