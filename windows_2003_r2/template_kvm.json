@@ -2,9 +2,10 @@
   "variables": {
     "build_name": "{{env `BUILD_NAME`}}",
     "build_version": "{{env `BUILD_VERSION`}}",
-    "core": 2,
-    "memory": 4096,
-    "disk_size": 51200,
+    "core": "2",
+    "memory": "4096",
+    "disk_size": "51200",
+    "ssh_port": "22",
     "ssh_wait_timeout": "2h",
     "iso_url": "http://172.16.39.10/04_ISO/cn_win_srv_2003_r2_enterprise_64bit_with_sp2_virtio.iso",
     "iso_md5": "1662a1a202a03462212a3cbf1e69edc3",
