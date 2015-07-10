@@ -11,7 +11,7 @@ export VM_NAME
 export BUILD_VERSION
 
 PWD=`pwd`
-FILENAME=${VM_NAME}.xva
+FILENAME=${VM_NAME}
 PACKER=/opt/packer-builder-cloud/bin/packer
 
 if [ -e "${PWD}/disk" ];
