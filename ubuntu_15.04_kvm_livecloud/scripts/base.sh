@@ -13,7 +13,7 @@ deb-src http://mirrors.zju.edu.cn/ubuntu/ vivid-backports main restricted univer
 EOF
 
 apt-get update
-apt-get install -y --force-yes libglib2.0-0 curl 
+apt-get install -y --force-yes libglib2.0-0 curl python
 
 echo "UseDNS no" >> /etc/ssh/sshd_config
 sed -i "s/nameserver .*/nameserver 8.8.8.8/" /etc/resolv.conf 
