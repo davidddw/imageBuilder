@@ -1,33 +1,32 @@
 # add custom script in here
 
 # add respawn script
-# add respawn script
-cat <<'EOF' > /etc/init/qemu-ga.conf 
-# qemu-ga
-start on runlevel [2345]
-stop on runlevel [016]
+cat <<'EOF' > /lib/systemd/system/qemu-guest-agent.service
+[Unit]
+Description=QEMU Guest Agent
+BindsTo=dev-virtio\x2dports-org.qemu.guest_agent.0.device
+After=dev-virtio\x2dports-org.qemu.guest_agent.0.device
 
-respawn
-env TRANSPORT_METHOD="virtio-serial"
-env DEVPATH="/dev/virtio-ports/org.qemu.guest_agent.0"
-env LOGFILE="/var/log/qemu-ga/qemu-ga.log"
-env PIDFILE="/var/run/qemu-ga.pid"
-env BLACKLIST_RPC="guest-file-open guest-file-close guest-file-read guest-file-write guest-file-seek guest-file-flush"
+[Service]
+UMask=0077
+ExecStart=/usr/bin/qemu-ga \
+  --method=virtio-serial \
+  --path=/dev/virtio-ports/org.qemu.guest_agent.0 \
+  --blacklist=guest-file-open,guest-file-close,guest-file-read,guest-file-write,guest-file-seek,guest-file-flush
+StandardError=syslog
+Restart=always
+RestartSec=0
 
-pre-start script
-    [ -d /var/log/qemu-ga ] || mkdir -p /var/log/qemu-ga
-    [ -d /usr/local/var/run/ ] || mkdir -p /usr/local/var/run/
-end script
-exec /usr/bin/qemu-ga --method $TRANSPORT_METHOD --path $DEVPATH --logfile $LOGFILE --pidfile $PIDFILE --blacklist $BLACKLIST_RPC
+[Install]
+WantedBy=multi-user.target
 EOF
 
+systemctl enable qemu-guest-agent.service
 mkdir -p /usr/local/var/run/
 
 # wget vm_init
 cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
 rm -rf /bin/sh && ln -s /bin/bash /bin/sh
-
-sed -i -e 's/sleep 40/# sleep 40/' -e 's/sleep 59/# sleep 59/' /etc/init/failsafe.conf
 
 # wget qemu_ga
 cd /usr/bin && wget http://172.16.39.10/09_config/qga/qemu-ga.ubuntu14 && mv qemu-ga.ubuntu14 qemu-ga && chmod +x qemu-ga
