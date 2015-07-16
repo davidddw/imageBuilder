@@ -26,7 +26,7 @@ EOF
 # wget vm_init
 cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
 # wget qemu_ga
-cd /usr/bin && wget $QEMU_GA && mv qemu-ga.el6 qemu-ga && chmod +x qemu-ga
+cd /usr/bin && wget $QEMU_GA && mv qemu-ga.el6_i386 qemu-ga && chmod +x qemu-ga
 
 # remove ip and mac address
 rm -fr /etc/udev/rules.d/70-persistent-net.rules
