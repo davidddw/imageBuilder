@@ -1,5 +1,8 @@
 # add custom script in here
 
+VM_INIT='http://172.16.39.10/Packer/qga/vm_init.sh'
+QEMU_GA='http://172.16.39.10/Packer/qga/qemu-ga.suse13'
+
 # add respawn script
 cat <<'EOF' > /usr/lib/systemd/system/qemu-guest-agent.service
 [Unit]
@@ -25,11 +28,11 @@ systemctl enable qemu-guest-agent.service
 mkdir -p /usr/local/var/run/
 
 # wget vm_init
-cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
+cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
 rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 
 # wget qemu_ga
-cd /usr/bin && wget http://172.16.39.10/09_config/qga/qemu-ga.suse13 && mv qemu-ga.suse13 qemu-ga && chmod +x qemu-ga
+cd /usr/bin && wget $QEMU_GA && mv qemu-ga.suse13 qemu-ga && chmod +x qemu-ga
 
 # enable tty console
 PATH=/sbin:/usr/sbin:/bin:/usr/bin

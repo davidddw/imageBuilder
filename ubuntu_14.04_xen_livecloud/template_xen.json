@@ -10,7 +10,7 @@
     "iso_sr_name": "Local_ISO",
     "sr_name": "SR_Local",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/04_ISO/ubuntu-14.04.2-server-amd64.iso",
+    "iso_url": "http://172.16.39.10/Packer/ubuntu-14.04.2-server-amd64.iso",
     "iso_md5": "83aabd8dcf1e8f469f3c72fff2375195",
     "vm_name": "{{env `VM_NAME`}}"
   },

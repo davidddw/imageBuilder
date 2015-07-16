@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "8h",
-    "iso_url": "http://172.16.39.10/04_ISO/cn_windows_server_2012_r2_with_update_x64_dvd_4048415.iso",
+    "iso_url": "http://172.16.39.10/Packer/cn_windows_server_2012_r2_with_update_x64_dvd_4048415.iso",
     "iso_md5": "17bef43f9dc4fcff72dc4ee0b20114be",
     "vm_name": "{{env `VM_NAME`}}"
   },

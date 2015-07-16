@@ -7,8 +7,8 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/04_ISO/CentOS-5.11-x86_64-bin-DVD-1of2.iso",
-    "iso_md5": "2deb566098aa21ebfd829ff147a1f71c",
+    "iso_url": "http://172.16.39.10/Packer/CentOS-5.11-x86_64-bin-DVD-Basic.iso",
+    "iso_md5": "59f166b55a6f0416d6e0cfd91cfdce29",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [

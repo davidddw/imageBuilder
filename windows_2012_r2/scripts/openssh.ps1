@@ -6,10 +6,10 @@ Write-Host "AutoStart: $AutoStart"
 $is_64bit = [IntPtr]::size -eq 8
 
 # setup openssh
-$ssh_download_url = "http://172.16.39.10/04_ISO/setupssh-6.8p1-1.exe"
+$ssh_download_url = "http://172.16.39.10/Packer/setupssh-6.8p1-1.exe"
 if ($is_64bit) {
     Write-Host "64 bit OS found"
-    $ssh_download_url = "http://172.16.39.10/04_ISO/setupssh-6.8p1-1.exe"
+    $ssh_download_url = "http://172.16.39.10/Packer/setupssh-6.8p1-1.exe"
 }
 
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {

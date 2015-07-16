@@ -13,14 +13,7 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
 mkinitcpio -p linux
 
-echo -e 'vagrant\nvagrant' | passwd
-useradd -m -U vagrant
-echo -e 'vagrant\nvagrant' | passwd vagrant
-cat <<EOF > /etc/sudoers.d/vagrant
-Defaults:vagrant !requiretty
-vagrant ALL=(ALL) NOPASSWD: ALL
-EOF
-chmod 440 /etc/sudoers.d/vagrant
+echo -e 'yunshan3302\nyunshan3302' | passwd
 
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link

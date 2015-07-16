@@ -1,5 +1,8 @@
 # add custom script in here
 
+VM_INIT='http://172.16.39.10/Packer/qga/vm_init.sh'
+QEMU_GA='http://172.16.39.10/Packer/qga/qemu-ga.el6'
+
 # add respawn script
 cat <<'EOF' > /etc/init/qemu-ga.conf 
 # qemu-ga
@@ -21,9 +24,9 @@ exec /usr/bin/qemu-ga --method $TRANSPORT_METHOD --path $DEVPATH --logfile $LOGF
 EOF
 
 # wget vm_init
-cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
+cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
 # wget qemu_ga
-cd /usr/bin && wget http://172.16.39.10/09_config/qga/qemu-ga.el6 && mv qemu-ga.el6 qemu-ga && chmod +x qemu-ga
+cd /usr/bin && wget $QEMU_GA && mv qemu-ga.el6 qemu-ga && chmod +x qemu-ga
 
 # remove ip and mac address
 rm -fr /etc/udev/rules.d/70-persistent-net.rules

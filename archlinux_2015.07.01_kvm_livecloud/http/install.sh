@@ -15,7 +15,7 @@ mkfs.ext4 /dev/sda2
 mount /dev/sda2 /mnt
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
-grep '^#Server' /tmp/mirrolist | sort -R | head -n 50 | sed 's/^#//' > /tmp/mirrolist.50
+grep 'China' -A12 /tmp/mirrolist | grep '^#Server' | sed 's/^#//' > /tmp/mirrolist.50
 rankmirrors -v /tmp/mirrolist.50 | tee /etc/pacman.d/mirrorlist
 pacstrap /mnt base openssh sudo syslinux
 

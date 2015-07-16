@@ -1,7 +1,9 @@
 # add custom script in here
 
+VM_INIT='http://172.16.39.10/Packer/qga/vm_init.sh'
+
 # wget vm_init
-cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
+cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
 cat << EOF >> /etc/rc.d/rc.local
 if [ -e /dev/xvdd ]; then
     rm -rf /tmp/livecloud

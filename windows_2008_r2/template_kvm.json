@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "8h",
-    "iso_url": "http://172.16.39.10/04_ISO/cn_windows_server_2008_r2_sp1_x64_dvd_617598.iso",
+    "iso_url": "http://172.16.39.10/Packer/cn_windows_server_2008_r2_sp1_x64_dvd_617598.iso",
     "iso_md5": "bcbbce8d75d836777e864759c5b8cde0",
     "vm_name": "{{env `VM_NAME`}}"
   },

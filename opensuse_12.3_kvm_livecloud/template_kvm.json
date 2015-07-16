@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/04_ISO/openSUSE-12.3-DVD-x86_64.iso",
+    "iso_url": "http://172.16.39.10/Packer/openSUSE-12.3-DVD-x86_64.iso",
     "iso_md5": "02f33a86ff8e89c415f59da2618f4930",
     "vm_name": "{{env `VM_NAME`}}"
   },

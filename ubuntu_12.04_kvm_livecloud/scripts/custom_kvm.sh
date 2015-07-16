@@ -1,5 +1,8 @@
 # add custom script in here
 
+VM_INIT='http://172.16.39.10/Packer/qga/vm_init.sh'
+QEMU_GA='http://172.16.39.10/Packer/qga/qemu-ga.ubuntu12'
+
 # add respawn script
 cat <<'EOF' > /etc/init/qemu-ga.conf 
 # qemu-ga
@@ -23,13 +26,13 @@ EOF
 mkdir -p /usr/local/var/run/
 
 # wget vm_init
-cd /etc/ && wget http://172.16.39.10/09_config/vm_init.sh && chmod +x vm_init.sh
+cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
 rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 
 sed -i -e 's/sleep 40/# sleep 40/' -e 's/sleep 59/# sleep 59/' /etc/init/failsafe.conf
 
 # wget qemu_ga
-cd /usr/bin && wget http://172.16.39.10/09_config/qga/qemu-ga.ubuntu12 && mv qemu-ga.ubuntu12 qemu-ga && chmod +x qemu-ga
+cd /usr/bin && wget $QEMU_GA && mv qemu-ga.ubuntu12 qemu-ga && chmod +x qemu-ga
 
 # enable tty console
 PATH=/sbin:/usr/sbin:/bin:/usr/bin

@@ -23,8 +23,6 @@ enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 EOF
-
-yum --disablerepo=\* --enablerepo=centos6 -y groupinstall base core
  
 yum --disablerepo=\* --enablerepo=centos6,epel6 -y install vim openssh-clients \
 wget 
