@@ -10,14 +10,14 @@ cat <<'EOF' > /etc/yum.repos.d/custom.repo
 
 [centos6]
 name=CentOS-$releasever - Media
-baseurl=http://172.16.39.10/00_mirrors/centos6/centos6.6
+baseurl=http://172.16.2.254/00_mirrors/centos6/centos
 gpgcheck=0
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 [epel6]
 name=CentOS-$releasever - Custom
-baseurl=http://172.16.39.10/00_mirrors/centos6/epel6
+baseurl=http://172.16.2.254/00_mirrors/centos6/epel6
 gpgcheck=0
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
