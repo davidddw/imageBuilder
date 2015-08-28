@@ -1,7 +1,7 @@
 # add custom script in here
 
-VM_INIT='http://172.16.39.10/Packer/qga/vm_init.sh'
-QEMU_GA='http://172.16.39.10/Packer/qga/qemu-ga.deb7'
+VM_INIT='http://172.16.2.254/Packer/qga/vm_init.sh'
+QEMU_GA='http://172.16.2.254/Packer/qga/qemu-ga.deb7'
 
 # add respawn script
 cat <<'EOF' > /etc/init.d/qemu-guest-agent 

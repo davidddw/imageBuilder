@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/Packer/debian-8.1.0-amd64-netinst.iso",
+    "iso_url": "http://172.16.2.254/Packer/debian-8.1.0-amd64-netinst.iso",
     "iso_md5": "1a311f9afb68d6365211b13b4342c40b",
     "vm_name": "{{env `VM_NAME`}}"
   },

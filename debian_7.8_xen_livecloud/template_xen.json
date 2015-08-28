@@ -10,7 +10,7 @@
     "iso_sr_name": "Local_ISO",
     "sr_name": "SR_Local",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/Packer/debian-7.8.0-amd64-netinst.iso",
+    "iso_url": "http://172.16.2.254/Packer/debian-7.8.0-amd64-netinst.iso",
     "iso_md5": "a91fba5001cf0fbccb44a7ae38c63b6e",
     "vm_name": "{{env `VM_NAME`}}"
   },
