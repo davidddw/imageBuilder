@@ -5,7 +5,7 @@ if ($UserExist) {
 	$server.delete("user", "livecloud")
 }
 
-$python_download_url = "http://172.16.39.10/Packer/python-2.7.8.amd64.msi"
+$python_download_url = "http://172.16.2.254/Packer/python-2.7.8.amd64.msi"
 if (!(Test-Path "C:\python27" )) {
     Write-Host "Downloading $python_download_url"
     $msiFile = "C:\Windows\Temp\python-2.7.8.amd64.msi"
@@ -28,7 +28,7 @@ if (!(Test-Path "C:\python27" )) {
 }
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\python27\;C:\python27\Scripts\", "User")
 
-$virtio_download_url = "http://172.16.39.10/Packer/virtiodriver.zip"
+$virtio_download_url = "http://172.16.2.254/Packer/virtiodriver.zip"
 if (!(Test-Path "C:\Windows\virtiodriver" )) {
     Write-Host "Downloading $virtio_download_url"
     $driverFile = "C:\Windows\Temp\virtiodriver.zip"
@@ -56,7 +56,7 @@ if ($process.ExitCode -eq 0){
     Write-Host "InstallVirtIO failed"
 }
 
-$qga_download_url = "http://172.16.39.10/Packer/qemu-ga.64bit.msi"
+$qga_download_url = "http://172.16.2.254/Packer/qemu-ga.64bit.msi"
 if (!(Test-Path "C:\Program Files\qemu-ga" )) {
     Write-Host "Downloading $qga_download_url"
     $msiFile = "C:\Windows\Temp\qemu-ga.64bit.msi"
@@ -79,7 +79,7 @@ if (!(Test-Path "C:\Program Files\qemu-ga" )) {
 	Start-Service "QEMU Guest Agent"
 }
 
-$rar_download_url = "http://172.16.39.10/Packer/WinRAR5.21_x64sc.exe"
+$rar_download_url = "http://172.16.2.254/Packer/WinRAR5.21_x64sc.exe"
 if (!(Test-Path "C:\Program Files\WinRAR")) {
     Write-Host "Downloading $rar_download_url"
     (New-Object System.Net.WebClient).DownloadFile($rar_download_url, "C:\Windows\Temp\winrar.exe")
