@@ -1,8 +1,8 @@
 Write-Host "Delete livecloud User"
 $UserExist = [ADSI]::Exists("WinNT://livecloud-2008/livecloud")
 if ($UserExist) {
-	[ADSI]$server="WinNT://livecloud-2008"
-	$server.delete("user", "livecloud")
+    [ADSI]$server="WinNT://livecloud-2008"
+    $server.delete("user", "livecloud")
 }
 
 $7z_download_url = "http://172.16.2.254/Packer/7z1507-x64.exe"
@@ -16,7 +16,7 @@ $python_download_url = "http://172.16.2.254/Packer/python-2.7.8.amd64.msi"
 if (!(Test-Path "C:\Program Files\python" )) {
     Write-Host "Downloading $python_download_url"
     $msiFile = "C:\Windows\Temp\python-2.7.8.amd64.msi"
-    $targetdit = "C:\Program Files\python27"
+    $targetdit = "C:\Program Files\python"
     ( New-Object System.Net.WebClient).DownloadFile( $python_download_url , "$msiFile" )
     $arguments = @(
         "/i"
@@ -25,14 +25,14 @@ if (!(Test-Path "C:\Program Files\python" )) {
         "/norestart"
         "ALLUSERS=1"
         "TARGETDIR=`"$targetdit`""
-	)
-	Write-Host "Installing $msiFile....."
-	$process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
-	if ($process.ExitCode -eq 0){
-	    Write-Host "$msiFile has been successfully installed"
-	} else {
-    	Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
-	}
+    )
+    Write-Host "Installing $msiFile....."
+    $process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
+    if ($process.ExitCode -eq 0){
+        Write-Host "$msiFile has been successfully installed"
+    } else {
+        Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
+    }
 }
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Program Files\python\;C:\Program Files\python\Scripts\", "User")
 
@@ -57,7 +57,7 @@ $castore.Add($cacert)
 Write-Host "Installing VirtIO drivers from: $virtioDriversPath"
 $process = Start-process -Wait -PassThru pnputil "-i -a C:\Windows\virtiodriver\*.inf"
 if ($process.ExitCode -eq 0){
-	Write-Host "VirtIO has been successfully installed"
+    Write-Host "VirtIO has been successfully installed"
 } else {
     Write-Host "InstallVirtIO failed"
 }
@@ -68,21 +68,21 @@ if (!(Test-Path "C:\Program Files\qemu-ga" )) {
     $msiFile = "C:\Windows\Temp\qemu-ga.64bit.msi"
     ( New-Object System.Net.WebClient).DownloadFile( $qga_download_url , "$msiFile" )
     $arguments = @(
-		"/i"
-		"`"$msiFile`""
-	    "/qn"
-		"/norestart"
-		"ALLUSERS=1"
-	)
-	Write-Host "Installing $msiFile....."
-	$process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
-	if ($process.ExitCode -eq 0){
-	    Write-Host "$msiFile has been successfully installed"
-	} else {
-    	Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
-	}
-	Start-Service "QEMU Guest Agent VSS Provider"
-	Start-Service "QEMU Guest Agent"
+        "/i"
+        "`"$msiFile`""
+        "/qn"
+        "/norestart"
+        "ALLUSERS=1"
+    )
+    Write-Host "Installing $msiFile....."
+    $process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
+    if ($process.ExitCode -eq 0){
+        Write-Host "$msiFile has been successfully installed"
+    } else {
+        Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
+    }
+    Start-Service "QEMU Guest Agent VSS Provider"
+    Start-Service "QEMU Guest Agent"
 }
 
 secedit /export /cfg c:\secpol.cfg
@@ -115,4 +115,10 @@ if (!(Test-Path "C:\Windows\srvstart" )) {
     &$srvstart install vagent -c C:\Windows\srvstart\srvstart.ini
     Set-Service -Name "vagent" -StartupType Automatic
     net start vagent
+    
+    # configure firewall
+    Write-Host "Configuring firewall"
+    netsh advfirewall firewall add rule name="vagent" dir=in action=allow service=vagent enable=yes
+    netsh advfirewall firewall add rule name="vagent" dir=in action=allow program="C:\Windows\vagent\vagent.py" enable=yes
+    netsh advfirewall firewall add rule name="vagent" dir=in action=allow protocol=TCP localport=12345
 }
