@@ -249,6 +249,12 @@
           <Order>22</Order>
           <Description>Disable password expiration for administrator user</Description>
         </SynchronousCommand>
+        <SynchronousCommand wcm:action="add">
+          <CommandLine>cmd.exe /c powershell -File a:\disable-password-complexity.ps1</CommandLine>
+          <Description>Disable password complexity</Description>
+          <Order>23</Order>
+          <RequiresUserInput>true</RequiresUserInput>
+        </SynchronousCommand>
         <!-- WITHOUT WINDOWS UPDATES -->
         <SynchronousCommand wcm:action="add">
           <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>

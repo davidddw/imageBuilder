@@ -62,14 +62,6 @@ if ($process.ExitCode -eq 0){
     Write-Host "InstallVirtIO failed"
 }
 
-secedit /export /cfg c:\secpol.cfg
-$config_file = Get-Content 'C:\secpol.cfg'
-$config_file = $config_file -replace 'PasswordComplexity = 1', 'PasswordComplexity = 0'
-$config_file = $config_file -replace 'MinimumPasswordLength = 1', 'MinimumPasswordLength = 0'
-Set-Content 'c:\secpol.cfg' $config_file
-secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
-rm -force c:\secpol.cfg -confirm:$false
-
 $vagent_download_url = "http://172.16.2.254/Packer/vagent.tar.gz"
 if (!(Test-Path "C:\Windows\vagent" )) {
     Write-Host "Downloading $vagent_download_url"

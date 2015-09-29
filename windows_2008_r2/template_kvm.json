@@ -50,11 +50,9 @@
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
       "floppy_files": [
         "http/Autounattend.xml",
-        "scripts/microsoft-updates.bat",
-        "scripts/win-updates.ps1",
-        "scripts/livecloud.ps1",
-        "virtio/*",
-        "scripts/openssh.ps1"
+        "scripts/*.bat",
+        "scripts/*.ps1",
+        "virtio/*"
       ]
     }
   ],
