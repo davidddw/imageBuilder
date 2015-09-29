@@ -94,13 +94,13 @@
       language="neutral" versionScope="nonSxS">
       <UserAccounts>
         <AdministratorPassword>
-          <Value>yunshan3302</Value>
+          <Value>security421</Value>
           <PlainText>true</PlainText>
         </AdministratorPassword>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Password>
-              <Value>yunshan3302</Value>
+              <Value>security421</Value>
               <PlainText>true</PlainText>
             </Password>
             <Description>Livecloud User</Description>
@@ -117,7 +117,7 @@
       </OOBE>
       <AutoLogon>
         <Password>
-          <Value>yunshan3302</Value>
+          <Value>security421</Value>
           <PlainText>true</PlainText>
         </Password>
         <Username>Administrator</Username>

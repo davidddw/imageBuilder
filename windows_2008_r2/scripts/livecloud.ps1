@@ -113,7 +113,7 @@ if (!(Test-Path "C:\Windows\srvstart" )) {
     &$sevenZip x -y C:\Windows\Temp\srvstart.tar -oC:\Windows
     $srvstart = "C:\Windows\srvstart\srvstart.exe"
     &$srvstart install vagent -c C:\Windows\srvstart\srvstart.ini
-    Set-Service -Name "vagent" -StartupType Automatic
+    Set-Service -Name "vagent" -StartupType Automatic -description "LiveCloud Agent for VM"
     net start vagent
     
     # configure firewall
