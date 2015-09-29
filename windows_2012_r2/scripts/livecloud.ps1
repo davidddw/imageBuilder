@@ -1,8 +1,8 @@
 Write-Host "Delete livecloud User"
-$UserExist = [ADSI]::Exists("WinNT://livecloud-2012/livecloud")
+$UserExist = [ADSI]::Exists("WinNT://livecloud-2008/livecloud")
 if ($UserExist) {
-	[ADSI]$server="WinNT://livecloud-2012"
-	$server.delete("user", "livecloud")
+    [ADSI]$server="WinNT://livecloud-2008"
+    $server.delete("user", "livecloud")
 }
 
 $7z_download_url = "http://172.16.2.254/Packer/7z1507-x64.exe"
@@ -62,29 +62,6 @@ if ($process.ExitCode -eq 0){
     Write-Host "InstallVirtIO failed"
 }
 
-$qga_download_url = "http://172.16.2.254/Packer/qemu-ga.64bit.msi"
-if (!(Test-Path "C:\Program Files\qemu-ga" )) {
-    Write-Host "Downloading $qga_download_url"
-    $msiFile = "C:\Windows\Temp\qemu-ga.64bit.msi"
-    ( New-Object System.Net.WebClient).DownloadFile( $qga_download_url , "$msiFile" )
-    $arguments = @(
-        "/i"
-        "`"$msiFile`""
-        "/qn"
-        "/norestart"
-        "ALLUSERS=1"
-    )
-    Write-Host "Installing $msiFile....."
-    $process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
-    if ($process.ExitCode -eq 0){
-        Write-Host "$msiFile has been successfully installed"
-    } else {
-        Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
-    }
-    Start-Service "QEMU Guest Agent VSS Provider"
-    Start-Service "QEMU Guest Agent"
-}
-
 secedit /export /cfg c:\secpol.cfg
 $config_file = Get-Content 'C:\secpol.cfg'
 $config_file = $config_file -replace 'PasswordComplexity = 1', 'PasswordComplexity = 0'
@@ -121,4 +98,28 @@ if (!(Test-Path "C:\Windows\srvstart" )) {
     netsh advfirewall firewall add rule name="vagent" dir=in action=allow service=vagent enable=yes
     netsh advfirewall firewall add rule name="vagent" dir=in action=allow program="C:\Windows\vagent\vagent.py" enable=yes
     netsh advfirewall firewall add rule name="vagent" dir=in action=allow protocol=TCP localport=12345
+}
+
+$qga_download_url = "http://172.16.2.254/Packer/qemu-ga.64bit.msi"
+if (!(Test-Path "C:\Program Files (x86)\qemu-ga" )) {
+    Write-Host "Downloading $qga_download_url"
+    $msiFile = "C:\Windows\Temp\qemu-ga.64bit.msi"
+    $targetdit = "C:\Program Files\qemu-ga"
+    ( New-Object System.Net.WebClient).DownloadFile( $qga_download_url , "$msiFile" )
+    $arguments = @(
+        "/i"
+        "`"$msiFile`""
+        "/qn"
+        "/norestart"
+        "ALLUSERS=1"
+        "TARGETDIR=`"$targetdit`""
+    )
+    Write-Host "Installing $msiFile....."
+    $process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
+    if ($process.ExitCode -eq 0){
+        Write-Host "$msiFile has been successfully installed"
+    } else {
+        Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
+    }
+    Start-Service "QEMU Guest Agent"
 }
