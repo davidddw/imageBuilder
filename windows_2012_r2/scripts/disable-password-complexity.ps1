@@ -1,4 +1,4 @@
-# works on Microsoft Windows Server 2008 #carriage return
+# works on Microsoft Windows Server 2012 #carriage return
 secedit /export /cfg c:\new.cfg #carriage return
 #start-sleep -s 5 #carriage return
 ((get-content c:\new.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File c:\new.cfg #carriage return

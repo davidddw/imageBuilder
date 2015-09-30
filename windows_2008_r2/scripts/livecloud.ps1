@@ -36,7 +36,7 @@ if (!(Test-Path "C:\Program Files\python" )) {
 }
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Program Files\python\;C:\Program Files\python\Scripts\", "User")
 
-$virtio_download_url = "http://172.16.2.254/Packer/virtiodriver.tar.gz"
+$virtio_download_url = "http://172.16.2.254/Packer/virtiodriver2008R2.tar.gz"
 if (!(Test-Path "C:\Windows\virtiodriver" )) {
     Write-Host "Downloading $virtio_download_url"
     $driverFile = "C:\Windows\Temp\virtiodriver.tar.gz"
