@@ -3,7 +3,7 @@
 ; 
 ; Red Hat VirtIO Ethernet Adapter 
 ; 
-; Copyright (c) Red Hat, Inc.  All rights reserved. 
+; Copyright (c) 2008-2015 Red Hat, Inc.  All rights reserved. 
 ; 
 ;------------------------------------------------------------------------------- 
  
@@ -13,7 +13,7 @@ Class       = Net
 CatalogFile = netkvm.cat 
 ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318} 
 Provider    = %RedHat% 
-DriverVer=04/29/2014,61.70.104.8100 
+DriverVer=09/22/2015,61.72.104.11000 
 DriverPackageType = PlugAndPlay 
 DriverPackageDisplayName = %kvmnet6.DeviceDesc% 
  
@@ -30,7 +30,7 @@ AddReg          = kvmnet6.EnableMSI
 ;HKR, "Interrupt Management",, 0x00000010 
 ;HKR, "Interrupt Management\MessageSignaledInterruptProperties",, 0x00000010 
 HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1 
-HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 4 
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 2048 
 ;HKR, "Interrupt Management\Affinity Policy",, 0x00000010 
 HKR, "Interrupt Management\Affinity Policy", DevicePolicy, 0x00010001, 0 
 HKR, "Interrupt Management\Affinity Policy", DevicePriority, 0x00010001, 2 
@@ -118,7 +118,7 @@ HKR, Ndi\params\LogStatistics,      step,       0,          "1"
 HKR, Ndi\params\MTU,                ParamDesc,  0,          %MTU% 
 HKR, Ndi\params\MTU,                type,       0,          "long" 
 HKR, Ndi\params\MTU,                default,    0,          "1500" 
-HKR, Ndi\params\MTU,                min,        0,          "500" 
+HKR, Ndi\params\MTU,                min,        0,          "576" 
 HKR, Ndi\params\MTU,                max,        0,          "65500" 
 HKR, Ndi\params\MTU,                step,       0,          "1" 
  
@@ -266,7 +266,7 @@ netkvm.sys  = 1,,
 kvmnet6.CopyFiles = 12 
  
 [Strings] 
-RedHat = "Red Hat Inc." 
+RedHat = "Red Hat, Inc." 
 kvmnet6.DeviceDesc        = "Red Hat VirtIO Ethernet Adapter" 
 kvmnet6.Service.DispName    = "Red Hat VirtIO Ethernet Adapter Service" 
 DiskId1 = "Red Hat VirtIO Ethernet Adapter Driver Disk #1" 
