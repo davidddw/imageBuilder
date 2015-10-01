@@ -2,13 +2,13 @@
   "variables": {
     "build_name": "{{env `BUILD_NAME`}}",
     "build_version": "{{env `BUILD_VERSION`}}",
-    "core": "2",
+    "core": "4",
     "memory": "4096",
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "8h",
-    "iso_url": "http://172.16.2.254/Packer/cn_windows_server_2012_r2_with_update_x64_dvd_4048415.iso",
-    "iso_md5": "17bef43f9dc4fcff72dc4ee0b20114be",
+    "iso_url": "http://172.16.2.254/Packer/cn_windows_server_2012_r2_with_update_x64_dvd_6052725.iso",
+    "iso_md5": "02932ea7f9d81a452290dff5c8b2c8c5",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [

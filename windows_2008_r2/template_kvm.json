@@ -2,7 +2,7 @@
   "variables": {
     "build_name": "{{env `BUILD_NAME`}}",
     "build_version": "{{env `BUILD_VERSION`}}",
-    "core": "2",
+    "core": "4",
     "memory": "4096",
     "disk_size": "51200",
     "ssh_port": "22",
