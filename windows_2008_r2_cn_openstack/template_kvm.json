@@ -7,8 +7,8 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "8h",
-    "iso_url": "http://172.16.2.254/Packer/en_windows_server_2012_r2_with_update_x64_dvd_4065220.iso",
-    "iso_md5": "af6a7f966b4c4e31da5bc3cdc3afcbec",
+    "iso_url": "http://172.16.2.254/Packer/cn_windows_server_2008_r2_standard_enterprise_datacenter_and_web_with_sp1_x64_dvd_617598.iso",
+    "iso_md5": "bcbbce8d75d836777e864759c5b8cde0",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
@@ -25,9 +25,6 @@
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
           [ "-smp", "4,sockets=2,cores={{user `core`}},threads=1" ],
-          [ "-drive", "file=disk/{{user `vm_name`}},if=none,id=drive-scsi0-0-0-0,cache=writeback" ],
-          [ "-device", "virtio-scsi-pci,id=scsi0,bus=pci.0" ],
-          [ "-device", "scsi-hd,bus=scsi0.0,channel=0,scsi-id=0,lun=0,drive=drive-scsi0-0-0-0,id=scsi0-0-0-0,bootindex=1" ],
           [ "-device", "virtio-net,netdev=user.0" ],
           [ "-device", "virtio-serial-pci,id=virtio-serial0,bus=pci.0" ],
           [ "-chardev", "socket,id=charchannel0,path=/var/lib/libvirt/qemu/org.qemu.guest_agent,server,nowait" ],
