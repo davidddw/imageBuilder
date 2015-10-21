@@ -6,7 +6,7 @@
     "memory": "4096",
     "disk_size": "51200",
     "ssh_port": "22",
-    "ssh_wait_timeout": "2h",
+    "ssh_wait_timeout": "8h",
     "iso_url": "http://172.16.2.254/Packer/cn_win_srv_2003_r2_enterprise_64bit_with_sp2_virtio.iso",
     "iso_md5": "1662a1a202a03462212a3cbf1e69edc3",
     "vm_name": "{{env `VM_NAME`}}"
@@ -24,17 +24,14 @@
       "qemu_binary": "/usr/bin/qemu-kvm",
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
-          [ "-smp", "4,sockets=2,cores={{user `core`}},threads=1" ],
-          [ "-drive", "file=disk/{{user `vm_name`}}.qcow2,if=none,id=drive-scsi0-0-0-0,cache=writeback" ],
-          [ "-device", "virtio-scsi-pci,id=scsi0,bus=pci.0"],
-          [ "-device", "scsi-hd,bus=scsi0.0,channel=0,scsi-id=0,lun=0,drive=drive-scsi0-0-0-0,id=scsi0-0-0-0,bootindex=1"]
+          [ "-smp", "4,sockets=2,cores={{user `core`}},threads=1" ]
       ],
       "disk_size": "{{user `disk_size`}}",
       "http_directory": "http",
       "headless": true,
       "vm_name": "{{user `vm_name`}}",
       "net_device": "virtio-net",
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "boot_wait": "5s",
       "http_port_min": 10082,
       "http_port_max": 10089,
