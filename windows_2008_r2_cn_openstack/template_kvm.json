@@ -24,7 +24,8 @@
       "qemu_binary": "/usr/bin/qemu-kvm",
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
-          [ "-smp", "4,sockets=2,cores={{user `core`}},threads=1" ]
+          [ "-smp", "4,sockets=2,cores={{user `core`}},threads=1" ],
+          [ "-device", "virtio-balloon-pci,id=balloon0,bus=pci.0" ]
       ],
       "disk_size": "{{user `disk_size`}}",
       "http_directory": "http",
