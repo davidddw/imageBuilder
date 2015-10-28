@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="CentOS_7.1-x86_64"}
-: ${VM_NAME:="centos_7.1"}
+: ${BUILD_NAME:="CentOS_7.1-x86_64_openstack"}
+: ${VM_NAME:="centos_7.1_openstack"}
 
 export BUILD_NAME
 export VM_NAME
@@ -12,7 +12,7 @@ export BUILD_VERSION
 
 PWD=`pwd`
 FILENAME=${VM_NAME}
-PACKER=/opt/packer-builder-cloud/bin/packer
+PACKER=/usr/bin/packer
 
 if [ -e "${PWD}/disk" ];
 then
