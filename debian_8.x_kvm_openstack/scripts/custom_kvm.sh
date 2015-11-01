@@ -14,3 +14,5 @@ dpkg -i /tmp/isc-dhcp-client_4.3.3-6_amd64.deb
 wget http://ftp.cn.debian.org/debian/pool/main/i/isc-dhcp/isc-dhcp-common_4.3.3-6_amd64.deb \
 -O /tmp/isc-dhcp-common_4.3.3-6_amd64.deb && \
 dpkg -i /tmp/isc-dhcp-common_4.3.3-6_amd64.deb
+
+rm -rf /etc/hostname
