@@ -19,14 +19,6 @@ $url = "http://172.16.2.254/Packer/"
 $bin_dir = "C:\Windows\System32\"
 $tmp_dir = "C:\Windows\Temp\"
 
-$7z_download_url = "http://172.16.2.254/Packer/qga/7za.exe"
-$curl_download_url = "http://172.16.2.254/Packer/qga/curl.exe"
-$vm_init_download_url = "http://172.16.2.254/Packer/qga/vm_init.bat"
-$python_download_url = "http://172.16.2.254/Packer/python.tar.gz"
-$virtio_download_url = "http://172.16.2.254/Packer/virtiodriver2012R2.tar.gz"
-$vagent_download_url = "http://172.16.2.254/Packer/vagent.tar.gz"
-$qga_download_url = "http://172.16.2.254/Packer/qemu-ga-x86_64.msi"
-
 download $url"qga/7za.exe" $bin_dir"7za.exe"
 download $url"qga/curl.exe" $bin_dir"curl.exe"
 download $url"qga/vm_init.bat" $bin_dir"vm_init.bat"
@@ -38,7 +30,6 @@ download $url"qemu-ga-x86_64.msi" $tmp_dir"qemu-ga-x86_64.msi"
 xzFile "C:\Windows\Temp\python.tar.gz" "C:\Windows\Temp"
 xzFile "C:\Windows\Temp\virtiodriver.tar.gz" "C:\Windows"
 xzFile "C:\Windows\Temp\vagent.tar.gz" "C:\Windows"
-
 
 if (!(Test-Path "C:\Program Files\python" )) {
     $msiFile = "C:\Windows\Temp\python-2.7.8.amd64.msi"
@@ -99,7 +90,7 @@ if (!(Test-Path "C:\Windows\vagent" )) {
     netsh advfirewall firewall add rule name="vagent" dir=in action=allow protocol=TCP localport=12345
 }
 
-if (!(Test-Path "C:\Program Files (x86)\qemu-ga" )) {
+if (!(Test-Path "C:\Program Files\qemu-ga" )) {
     $msiFile = "C:\Windows\Temp\qemu-ga-x86_64.msi"
     $targetdit = "C:\Program Files\qemu-ga"
     $arguments = @(
@@ -114,11 +105,11 @@ if (!(Test-Path "C:\Program Files (x86)\qemu-ga" )) {
     $process = Start-Process -FilePath msiexec.exe -ArgumentList $arguments -Wait -PassThru
     if ($process.ExitCode -eq 0){
         Write-Host "$msiFile has been successfully installed"
+        Start-Service "QEMU Guest Agent VSS Provider"
+        Start-Service "QEMU-GA"
     } else {
-        Write-Host "installer exit code  $($process.ExitCode) for file  $($msifile)"
+        Write-Host "installer exit code $($process.ExitCode) for file $($msifile)"
     }
-    Start-Service "QEMU Guest Agent VSS Provider"
-    Start-Service "QEMU-GA"
 }
 
 Remove-Item C:\Windows\Temp\* -Recurse -Force
