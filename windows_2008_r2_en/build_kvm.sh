@@ -4,7 +4,7 @@ set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
 : ${BUILD_NAME:="Windows_2008_R2_SP1_EN"}
-: ${VM_NAME:="Windows_2008_R2_SP1_EN"}
+: ${VM_NAME:="Windows_2008_R2"}
 
 export BUILD_NAME
 export VM_NAME

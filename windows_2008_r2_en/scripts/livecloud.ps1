@@ -28,9 +28,6 @@ download $url"vagent.tar.gz" $tmp_dir"vagent.tar.gz"
 download $url"qemu-ga-x86_64.msi" $tmp_dir"qemu-ga-x86_64.msi"
 
 xzFile "C:\Windows\Temp\python.tar.gz" "C:\Windows\Temp"
-xzFile "C:\Windows\Temp\virtiodriver.tar.gz" "C:\Windows"
-xzFile "C:\Windows\Temp\vagent.tar.gz" "C:\Windows"
-
 
 if (!(Test-Path "C:\Program Files\python" )) {
     $msiFile = "C:\Windows\Temp\python-2.7.8.amd64.msi"
@@ -61,6 +58,7 @@ if (!(Test-Path "C:\Program Files\python" )) {
 
 if (!(Test-Path "C:\Windows\virtiodriver" )) {
     Write-Host "Install VirtIO Driver...."
+    xzFile "C:\Windows\Temp\virtiodriver.tar.gz" "C:\Windows"
     $Host.UI.RawUI.WindowTitle = "Installing VirtIO certificate..."
     $virtioCertPath = "C:\Windows\virtiodriver\VirtIO.cer"
     $virtioDriversPath = "C:\Windows\virtiodriver"
@@ -80,8 +78,10 @@ if (!(Test-Path "C:\Windows\virtiodriver" )) {
 
 if (!(Test-Path "C:\Windows\vagent" )) {
     Write-Host "Config Vagent...."
-    python C:\Windows\vagent\vagent.py install
-    python C:\Windows\vagent\vagent.py start
+    xzFile "C:\Windows\Temp\vagent.tar.gz" "C:\Windows"
+    $python = "C:\Program Files\python\python.exe"
+    & $python C:\Windows\vagent\vagent.py install
+    & $python C:\Windows\vagent\vagent.py start
     Set-Service -Name "vagent" -StartupType Automatic -description "LiveCloud Agent for VM"
     
     # configure firewall
@@ -110,7 +110,5 @@ if (!(Test-Path "C:\Program Files\qemu-ga" )) {
         Start-Service "QEMU-GA"
     } else {
         Write-Host "installer exit code $($process.ExitCode) for file $($msifile)"
-    }
+    }   
 }
-
-Remove-Item C:\Windows\Temp\* -Recurse -Force
