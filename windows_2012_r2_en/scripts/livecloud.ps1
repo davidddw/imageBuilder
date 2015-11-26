@@ -80,8 +80,8 @@ if (!(Test-Path "C:\Windows\vagent" )) {
     Write-Host "Config Vagent...."
     xzFile "C:\Windows\Temp\vagent.tar.gz" "C:\Windows"
     $python = "C:\Program Files\python\python.exe"
-    & $python C:\Windows\vagent\vagent.py install
-    & $python C:\Windows\vagent\vagent.py start
+    & $python C:\Windows\vagent\vagent_service.py install
+    & $python C:\Windows\vagent\vagent_service.py start
     Set-Service -Name "vagent" -StartupType Automatic -description "LiveCloud Agent for VM"
     
     # configure firewall
