@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/Packer/archlinux-2015.07.01-dual.iso",
+    "iso_url": "http://172.16.2.254/Packer/isos/archlinux-2015.07.01-dual.iso",
     "iso_md5": "0d9dc37b5dd4befa1c440d2174e88a87",
     "vm_name": "{{env `VM_NAME`}}"
   },

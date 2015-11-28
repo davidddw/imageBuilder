@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/CentOS-6.7-x86_64-minimal.iso",
+    "iso_url": "http://172.16.2.254/Packer/isos/CentOS-6.7-x86_64-minimal.iso",
     "iso_md5": "9381a24b8bee2fed0c26896141a64b69",
     "vm_name": "{{env `VM_NAME`}}"
   },

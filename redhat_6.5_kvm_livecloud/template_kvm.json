@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/rhel-server-6.5-x86_64-dvd.iso",
+    "iso_url": "http://172.16.2.254/Packer/isos/rhel-server-6.5-x86_64-dvd.iso",
     "iso_md5": "a84d4d9eddb36fb417832166cd10a4c2",
     "vm_name": "{{env `VM_NAME`}}"
   },

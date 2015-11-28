@@ -10,7 +10,7 @@
     "iso_sr_name": "Local_ISO",
     "sr_name": "SR_Local",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.39.10/Packer/CentOS-6.6-x86_64-minimal.iso",
+    "iso_url": "http://172.16.39.10/Packer/isos/CentOS-6.6-x86_64-minimal.iso",
     "iso_md5": "eb3c8be6ab668e6d83a118323a789e6c",
     "vm_name": "{{env `VM_NAME`}}"
   },

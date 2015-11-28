@@ -7,7 +7,7 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "8h",
-    "iso_url": "http://172.16.2.254/Packer/cn_windows_10_enterprise_x64_dvd_6846957.iso",
+    "iso_url": "http://172.16.2.254/Packer/isos/cn_windows_10_enterprise_x64_dvd_6846957.iso",
     "iso_md5": "4c308c326dd6945dd1c5768cfa621141",
     "vm_name": "{{env `VM_NAME`}}"
   },
