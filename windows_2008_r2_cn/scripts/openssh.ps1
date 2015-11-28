@@ -9,7 +9,7 @@ $is_64bit = [IntPtr]::size -eq 8
 $ssh_download_url = "http://172.16.2.254/Packer/tools/setupssh-7.1p1-1.exe"
 if ($is_64bit) {
     Write-Host "64 bit OS found"
-    $ssh_download_url = "http://172.16.2.254/Packer/setupssh-7.1p1-1.exe"
+    $ssh_download_url = "http://172.16.2.254/Packer/tools/setupssh-7.1p1-1.exe"
 }
 
 if (!(Test-Path "C:\Program Files\OpenSSH\bin\ssh.exe")) {
