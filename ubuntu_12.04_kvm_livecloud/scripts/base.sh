@@ -1,15 +1,14 @@
-
 cat <<'EOF' > /etc/apt/sources.list
-deb http://mirrors.zju.edu.cn/ubuntu/ precise main restricted universe multiverse
-deb http://mirrors.zju.edu.cn/ubuntu/ precise-security main restricted universe multiverse
-deb http://mirrors.zju.edu.cn/ubuntu/ precise-updates main restricted universe multiverse
-deb http://mirrors.zju.edu.cn/ubuntu/ precise-proposed main restricted universe multiverse
-deb http://mirrors.zju.edu.cn/ubuntu/ precise-backports main restricted universe multiverse
-deb-src http://mirrors.zju.edu.cn/ubuntu/ precise main restricted universe multiverse
-deb-src http://mirrors.zju.edu.cn/ubuntu/ precise-security main restricted universe multiverse
-deb-src http://mirrors.zju.edu.cn/ubuntu/ precise-updates main restricted universe multiverse
-deb-src http://mirrors.zju.edu.cn/ubuntu/ precise-proposed main restricted universe multiverse
-deb-src http://mirrors.zju.edu.cn/ubuntu/ precise-backports main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-proposed main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-proposed main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
 EOF
 
 apt-get update
