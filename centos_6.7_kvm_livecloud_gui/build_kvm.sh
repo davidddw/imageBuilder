@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="CentOS_6.6-x86_64"}
-: ${VM_NAME:="centos_6.6"}
+: ${BUILD_NAME:="CentOS_6.7-x86_64-gui"}
+: ${VM_NAME:="centos_6.7-gui"}
 
 export BUILD_NAME
 export VM_NAME

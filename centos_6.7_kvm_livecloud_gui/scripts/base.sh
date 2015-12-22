@@ -25,7 +25,7 @@ EOF
 
 yum --disablerepo=\* --enablerepo=centos6,epel6 -y install vim openssh-clients \
 wget Terminal Thunar leafpad orage thunar-archive-plugin thunar-volman tumbler \
-xfce-utils xfce4-appfinder xfce4-icon-theme xfce4-mixer xfce4-panel \
+xfce-utils xfce4-appfinder xfce4-icon-theme xfce4-mixer xfce4-panel tigervnc \
 xfce4-power-manager xfce4-session xfce4-session-engines xfce4-settings xfconf \
 xfdesktop xfwm4 exo fortune-mod garcon libxfce4ui libxfce4util xfce4-doc \
 tigervnc-server firefox flash-plugin xorg-x11-fonts-Type1 xorg-x11-fonts-misc xrdp
