@@ -7,8 +7,8 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/isos/archlinux-2015.07.01-dual.iso",
-    "iso_md5": "0d9dc37b5dd4befa1c440d2174e88a87",
+    "iso_url": "http://172.16.2.254/Packer/isos/archlinux-2015.12.01-dual.iso",
+    "iso_md5": "bbcd48b73851ae8f31c08f83a86b8ef2",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
@@ -20,11 +20,15 @@
       "iso_checksum": "{{user `iso_md5`}}",
       "iso_checksum_type": "md5",
       "output_directory": "disk",
-      "shutdown_command": "shutdown -h now",
+      "shutdown_command": "sudo systemctl start poweroff.timer",
       "qemu_binary": "/usr/bin/qemu-kvm",
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
-          [ "-smp", "2,sockets=2,cores={{user `core`}},threads=1" ]
+          [ "-smp", "2,sockets=2,cores={{user `core`}},threads=1" ],
+          [ "-drive", "file=disk/{{user `vm_name`}},if=none,id=drive-scsi0-0-0-0,cache=writeback" ],
+          [ "-device", "virtio-scsi-pci,id=scsi0,bus=pci.0" ],
+          [ "-device", "scsi-hd,bus=scsi0.0,channel=0,scsi-id=0,lun=0,drive=drive-scsi0-0-0-0,id=scsi0-0-0-0,bootindex=1" ],
+          [ "-device", "virtio-net,netdev=user.0" ]
       ],
       "disk_size": "{{user `disk_size`}}",
       "http_directory": "http",
@@ -39,13 +43,16 @@
       "ssh_host_port_max": 2229,
       "ssh_username": "root",
       "ssh_password": "yunshan3302",
+      "shutdown_command": "systemctl start poweroff.timer",
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
       "ssh_port": "{{user `ssh_port`}}",
       "boot_command":
       [
         "<enter><wait10><wait10>",
-        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/install{,-chroot}.sh'<enter><wait>",
-        "bash install.sh < install-chroot.sh && systemctl reboot<enter>"
+        "<enter><wait5>",
+        "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/install.sh<enter><wait5>",
+        "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/poweroff.timer<enter><wait5>",
+        "/usr/bin/bash ./install.sh<enter>"
       ]
     }
   ],
