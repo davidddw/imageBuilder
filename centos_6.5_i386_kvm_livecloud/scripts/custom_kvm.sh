@@ -18,7 +18,7 @@ env BLACKLIST_RPC="guest-file-open guest-file-close guest-file-read guest-file-w
 
 pre-start script
     [ -d /var/log/qemu-ga ] || mkdir -p /var/log/qemu-ga
-    [ -d /usr/local/var/run/ ] || mkdir -p /usr/local/var/run/
+    [ -d /usr/var/run/ ] || mkdir -p /usr/var/run/
 end script
 exec /usr/bin/qemu-ga --method $TRANSPORT_METHOD --path $DEVPATH --logfile $LOGFILE --pidfile $PIDFILE --blacklist $BLACKLIST_RPC
 EOF

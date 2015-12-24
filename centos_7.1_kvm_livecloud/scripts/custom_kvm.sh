@@ -23,7 +23,7 @@ RestartSec=0
 WantedBy=multi-user.target
 EOF
 systemctl enable qemu-guest-agent.service
-mkdir -p /usr/local/var/run/
+mkdir -p /usr/var/run/
 
 # wget vm_init
 cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh

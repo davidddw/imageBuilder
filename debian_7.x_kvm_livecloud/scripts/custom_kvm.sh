@@ -115,7 +115,7 @@ esac
 EOF
 
 chmod +x /etc/init.d/qemu-guest-agent && chkconfig qemu-guest-agent on
-mkdir -p /usr/local/var/run/
+mkdir -p /usr/var/run/
 
 # wget vm_init
 cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
