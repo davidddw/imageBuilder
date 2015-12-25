@@ -98,7 +98,7 @@
       <dhcp_hostname config:type="boolean">true</dhcp_hostname>
       <dhcp_resolv config:type="boolean">true</dhcp_resolv>
       <domain>yunshan.com</domain>
-      <hostname>opensuse-13</hostname>
+      <hostname>opensuse-42</hostname>
     </dns>
     <interfaces config:type="list">
       <interface>
