@@ -53,7 +53,7 @@
           <InstallFrom>
             <MetaData wcm:action="add">
               <Key>/IMAGE/NAME</Key>
-              <Value>Windows Server 2008 R2 SERVERDATACENTER</Value>
+              <Value>Windows Server 2008 R2 SERVERENTERPRISE</Value>
             </MetaData>
           </InstallFrom>
         </OSImage>
@@ -314,5 +314,5 @@
       <SkipAutoActivation>true</SkipAutoActivation>
     </component>
   </settings>
-  <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows server 2008 r2 serverdatacenter.clg"/>
+  <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="catalog:d:/sources/install_windows server 2008 r2 serverenterprise.clg"/>
 </unattend>
