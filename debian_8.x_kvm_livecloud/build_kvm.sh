@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="Debian_8.2.0-x86_64"}
-: ${VM_NAME:="debian82"}
+: ${BUILD_NAME:="Debian_8.3.0-x86_64"}
+: ${VM_NAME:="debian83"}
 
 export BUILD_NAME
 export VM_NAME
