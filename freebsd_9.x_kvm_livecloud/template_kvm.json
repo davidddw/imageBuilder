@@ -61,9 +61,10 @@
       "type": "shell",
       "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "scripts": [
-         "scripts/vagrant.sh",
-         "scripts/virtualbox.sh",
-         "scripts/cleanup.sh"
+         "scripts/base.sh",
+         "scripts/custom_kvm.sh",
+         "scripts/cleanup.sh",
+         "scripts/zerodisk.sh"
       ]
     }
   ]
