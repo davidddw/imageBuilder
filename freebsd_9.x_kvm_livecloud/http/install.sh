@@ -19,16 +19,13 @@ EOF
 
 env ASSUME_ALWAYS_YES=1 pkg bootstrap
 pkg update
-pkg install -y sudo
 pkg install -y bash
 pkg install -y curl
+pkg install -y vim, wget
 pkg install -y ca_root_nss
 
 ln -sf /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
 
 echo -n 'yunshan3302' | pw usermod root -h 0
-pw groupadd -n livecloud -g 1000
-echo -n 'yunshan3302' | pw useradd -n livecloud -u 1000 -s /usr/local/bin/bash -m -d /home/livecloud/ -G livecloud -h 0
-echo 'livecloud ALL=(ALL) NOPASSWD:ALL' >> /usr/local/etc/sudoers
 
 reboot

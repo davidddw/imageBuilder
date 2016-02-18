@@ -20,7 +20,7 @@
       "iso_checksum": "{{user `iso_md5`}}",
       "iso_checksum_type": "md5",
       "output_directory": "disk",
-      "shutdown_command": "echo 'shutdown -p now' | sudo su -",
+      "shutdown_command": "shutdown -p now",
       "qemu_binary": "/usr/bin/qemu-kvm",
       "qemuargs": [
           [ "-m", "size={{user `memory`}}" ],
@@ -58,7 +58,6 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "scripts": [
          "scripts/base.sh",
          "scripts/custom_kvm.sh",
