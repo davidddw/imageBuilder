@@ -7,8 +7,8 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/isos/FreeBSD-9.1-RELEASE-amd64-disc1.iso",
-    "iso_md5": "f0a320fd52383c42649d48ea545915a9",
+    "iso_url": "http://172.16.2.254/Packer/isos/FreeBSD-9.3-RELEASE-amd64-disc1.iso",
+    "iso_md5": "1fc7f8bace8dc861258af9042c9918d6",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
@@ -43,14 +43,13 @@
       "ssh_port": "{{user `ssh_port`}}",
       "boot_command": [
         "<esc><wait>",
-        "load geom_mbr<enter>",
-        "load zfs<enter>",
-        "boot -s<enter>",
-        "<wait5><wait><wait>",
-        "/bin/sh<enter>",
-        "mdmfs -s 100m md1 /tmp<enter>",
-        "mdmfs -s 100m md2 /mnt<enter>",
-        "dhclient -l /tmp/dhclient.lease.eth0 eth0<enter><wait5>",
+        "boot -s<wait>",
+        "<enter><wait>",
+        "<wait10><wait10>",
+        "/bin/sh<enter><wait>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait><wait>",
         "bsdinstall script /tmp/setup<enter>"
       ]
