@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="Ubuntu_14.04.4-x86_64"}
-: ${VM_NAME:="ubuntu14.04.4"}
+: ${BUILD_NAME:="FreeBSD_10.2-x86_64"}
+: ${VM_NAME:="FreeBSD10.2"}
 
 export BUILD_NAME
 export VM_NAME

@@ -9,7 +9,7 @@ sh build_kvm.sh
 mv final_images/* ../final
 cd -
 
-cd centos_6.6_kvm_livecloud
+cd centos_6.7_kvm_livecloud
 sh build_kvm.sh
 mv final_images/* ../final
 cd -
@@ -19,12 +19,12 @@ sh build_kvm.sh
 mv final_images/* ../final
 cd -
 
-cd debian_7.8_kvm_livecloud
+cd debian_7.x_kvm_livecloud
 sh build_kvm.sh
 mv final_images/* ../final
 cd -
 
-cd debian_8.0_kvm_livecloud
+cd debian_8.x_kvm_livecloud
 sh build_kvm.sh
 mv final_images/* ../final
 cd -

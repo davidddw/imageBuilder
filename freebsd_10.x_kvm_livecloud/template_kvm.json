@@ -1,0 +1,70 @@
+{
+  "variables": {
+    "build_name": "{{env `BUILD_NAME`}}",
+    "build_version": "{{env `BUILD_VERSION`}}",
+    "core": "1",
+    "memory": "1024",
+    "disk_size": "51200",
+    "ssh_port": "22",
+    "ssh_wait_timeout": "10000s",
+    "iso_url": "http://172.16.2.254/Packer/isos/FreeBSD-10.2-RELEASE-amd64-disc1.iso",
+    "iso_md5": "1fc7f8bace8dc861258af9042c9918d6",
+    "vm_name": "{{env `VM_NAME`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `build_name`}}-{{user `build_version`}}",
+      "type": "qemu",
+      "format": "qcow2",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_md5`}}",
+      "iso_checksum_type": "md5",
+      "output_directory": "disk",
+      "shutdown_command": "echo 'shutdown -p now' | sudo su -",
+      "qemu_binary": "/usr/bin/qemu-kvm",
+      "qemuargs": [
+          [ "-m", "size={{user `memory`}}" ],
+          [ "-smp", "2,sockets=2,cores={{user `core`}},threads=1" ]
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "http_directory": "http",
+      "headless": true,
+      "vm_name": "{{user `vm_name`}}",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_wait": "5s",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "ssh_port": "{{user `ssh_port`}}",
+      "boot_command": [
+        "<esc><wait>",
+        "boot -s<wait>",
+        "<enter><wait>",
+        "<wait10><wait10>",
+        "/bin/sh<enter><wait>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+        "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait><wait>",
+        "bsdinstall script /tmp/setup<enter>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "scripts": [
+         "scripts/base.sh",
+         "scripts/custom_kvm.sh",
+         "scripts/cleanup.sh",
+         "scripts/zerodisk.sh"
+      ]
+    }
+  ]
+}
