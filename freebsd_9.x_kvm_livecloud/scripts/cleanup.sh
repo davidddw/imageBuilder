@@ -9,7 +9,3 @@ rm -rf /var/db/freebsd-update/install.*
 rm -rf /boot/kernel.old
 rm -rf /usr/src/*
 rm -f /*.core
-
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -rf /EMPTY
-sync

@@ -7,8 +7,8 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/isos/ubuntu-14.04.2-server-amd64.iso",
-    "iso_md5": "83aabd8dcf1e8f469f3c72fff2375195",
+    "iso_url": "http://172.16.2.254/Packer/isos/ubuntu-14.04.4-server-amd64.iso",
+    "iso_md5": "2ac1f3e0de626e54d05065d6f549fa3a",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [

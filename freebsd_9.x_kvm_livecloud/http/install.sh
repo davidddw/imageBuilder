@@ -22,7 +22,7 @@ pkg update
 pkg install -y sudo
 pkg install -y bash
 pkg install -y curl
-pkg install -y vim, wget
+pkg install -y vim wget
 pkg install -y ca_root_nss
 
 ln -sf /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
