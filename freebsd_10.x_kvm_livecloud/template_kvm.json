@@ -8,7 +8,7 @@
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://172.16.2.254/Packer/isos/FreeBSD-10.2-RELEASE-amd64-disc1.iso",
-    "iso_md5": "1fc7f8bace8dc861258af9042c9918d6",
+    "iso_md5": "ab5842858500b7a62889df39a1932343",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
