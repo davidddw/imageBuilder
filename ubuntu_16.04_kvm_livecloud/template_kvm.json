@@ -8,7 +8,7 @@
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://172.16.2.254/Packer/isos/ubuntu-16.04-server-amd64.iso",
-    "iso_md5": "fb4eef05edcabfc5cccd4cb44f3f9b48",
+    "iso_md5": "56151816cc49dce2872756bbf4deaf6a",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
@@ -35,6 +35,8 @@
       "boot_wait": "10s",
       "http_port_min": 10082,
       "http_port_max": 10089,
+      "vnc_port_min": 5947,
+      "vnc_port_max": 5947,
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
       "ssh_username": "root",

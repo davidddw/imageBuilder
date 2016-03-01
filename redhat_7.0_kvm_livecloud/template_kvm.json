@@ -35,6 +35,8 @@
       "boot_wait": "5s",
       "http_port_min": 10082,
       "http_port_max": 10089,
+      "vnc_port_min": 5947,
+      "vnc_port_max": 5947,
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
       "ssh_username": "root",

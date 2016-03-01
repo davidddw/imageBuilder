@@ -37,6 +37,8 @@
       "http_port_max": 10089,
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
+      "vnc_port_min": 5947,
+      "vnc_port_max": 5947,
       "ssh_username": "root",
       "ssh_password": "yunshan3302",
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
