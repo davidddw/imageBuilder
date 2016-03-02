@@ -69,7 +69,7 @@
           " keyboard-configuration/layout=USA",
           " keyboard-configuration/variant=USA",
           " locale=en_US",
-          " netcfg/get_hostname=ubuntu-1510",
+          " netcfg/get_hostname=ubuntu-1604",
           " netcfg/get_domain=yunshan.net.cn",
           " noapic",
           " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
