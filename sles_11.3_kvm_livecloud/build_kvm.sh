@@ -3,8 +3,8 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="SLES_11.3-x86_64"}
-: ${VM_NAME:="SLES_11.3"}
+: ${BUILD_NAME:="SLES_11SP3-x86_64"}
+: ${VM_NAME:="SLES_11SP3"}
 
 export BUILD_NAME
 export VM_NAME

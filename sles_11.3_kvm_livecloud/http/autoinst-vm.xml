@@ -3,31 +3,305 @@
 <!-- http://doc.opensuse.org/projects/autoyast/configuration.html -->
 <profile xmlns="http://www.suse.com/1.0/yast2ns"
   xmlns:config="http://www.suse.com/1.0/configns">
+  <bootloader>
+    <device_map config:type="list">
+      <device_map_entry>
+        <firmware>fd0</firmware>
+        <linux>/dev/fd0</linux>
+      </device_map_entry>
+      <device_map_entry>
+        <firmware>hd0</firmware>
+        <linux>/dev/sda</linux>
+      </device_map_entry>
+    </device_map>
+    <global>
+      <activate>true</activate>
+      <boot_root>true</boot_root>
+      <default>SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</default>
+      <generic_mbr>true</generic_mbr>
+      <gfxmenu>/boot/message</gfxmenu>
+      <lines_cache_id>3</lines_cache_id>
+      <timeout config:type="integer">8</timeout>
+    </global>
+    <initrd_modules config:type="list">
+      <initrd_module>
+        <module>ata_piix</module>
+      </initrd_module>
+      <initrd_module>
+        <module>ata_generic</module>
+      </initrd_module>
+      <initrd_module>
+        <module>virtio_blk</module>
+      </initrd_module>
+      <initrd_module>
+        <module>virtio_pci</module>
+      </initrd_module>
+      <initrd_module>
+        <module>virtio_scsi</module>
+      </initrd_module>
+    </initrd_modules>
+    <loader_type>grub</loader_type>
+    <sections config:type="list">
+      <section>
+        <append>resume=/dev/system/swap splash=silent showopts</append>
+        <image>/boot/vmlinuz-3.0.76-0.11-default</image>
+        <initial>1</initial>
+        <initrd>/boot/initrd-3.0.76-0.11-default</initrd>
+        <lines_cache_id>0</lines_cache_id>
+        <name>SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</name>
+        <original_name>linux</original_name>
+        <root>/dev/system/root</root>
+        <type>image</type>
+        <vgamode>0x317</vgamode>
+      </section>
+      <section>
+        <append>showopts ide=nodma apm=off noresume edd=off powersaved=off nohz=off highres=off processor.max_cstate=1 nomodeset x11failsafe</append>
+        <image>/boot/vmlinuz-3.0.76-0.11-default</image>
+        <initrd>/boot/initrd-3.0.76-0.11-default</initrd>
+        <lines_cache_id>1</lines_cache_id>
+        <name>Failsafe -- SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</name>
+        <original_name>failsafe</original_name>
+        <root>/dev/system/root</root>
+        <type>image</type>
+        <vgamode>0x317</vgamode>
+      </section>
+      <section>
+        <blockoffset>1</blockoffset>
+        <chainloader>/dev/fd0</chainloader>
+        <lines_cache_id>2</lines_cache_id>
+        <name>Floppy</name>
+        <noverifyroot>true</noverifyroot>
+        <original_name>floppy</original_name>
+        <type>other</type>
+      </section>
+    </sections>
+  </bootloader>
+  <ca_mgm>
+    <CAName>YaST_Default_CA</CAName>
+    <ca_commonName>YaST Default CA (site)</ca_commonName>
+    <country>CN</country>
+    <password>ENTER PASSWORD HERE</password>
+    <server_email>postmaster@site</server_email>
+    <takeLocalServerName config:type="boolean">true</takeLocalServerName>
+  </ca_mgm>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <firewall>
+    <FW_ALLOW_FW_BROADCAST_DMZ>no</FW_ALLOW_FW_BROADCAST_DMZ>
+    <FW_ALLOW_FW_BROADCAST_EXT>no</FW_ALLOW_FW_BROADCAST_EXT>
+    <FW_ALLOW_FW_BROADCAST_INT>no</FW_ALLOW_FW_BROADCAST_INT>
+    <FW_CONFIGURATIONS_DMZ></FW_CONFIGURATIONS_DMZ>
+    <FW_CONFIGURATIONS_EXT></FW_CONFIGURATIONS_EXT>
+    <FW_CONFIGURATIONS_INT></FW_CONFIGURATIONS_INT>
+    <FW_DEV_DMZ></FW_DEV_DMZ>
+    <FW_DEV_EXT>any eth0</FW_DEV_EXT>
+    <FW_DEV_INT></FW_DEV_INT>
+    <FW_FORWARD_ALWAYS_INOUT_DEV></FW_FORWARD_ALWAYS_INOUT_DEV>
+    <FW_FORWARD_MASQ></FW_FORWARD_MASQ>
+    <FW_IGNORE_FW_BROADCAST_DMZ>no</FW_IGNORE_FW_BROADCAST_DMZ>
+    <FW_IGNORE_FW_BROADCAST_EXT>yes</FW_IGNORE_FW_BROADCAST_EXT>
+    <FW_IGNORE_FW_BROADCAST_INT>no</FW_IGNORE_FW_BROADCAST_INT>
+    <FW_IPSEC_TRUST>no</FW_IPSEC_TRUST>
+    <FW_LOAD_MODULES>nf_conntrack_netbios_ns</FW_LOAD_MODULES>
+    <FW_LOG_ACCEPT_ALL>no</FW_LOG_ACCEPT_ALL>
+    <FW_LOG_ACCEPT_CRIT>yes</FW_LOG_ACCEPT_CRIT>
+    <FW_LOG_DROP_ALL>no</FW_LOG_DROP_ALL>
+    <FW_LOG_DROP_CRIT>yes</FW_LOG_DROP_CRIT>
+    <FW_MASQUERADE>no</FW_MASQUERADE>
+    <FW_PROTECT_FROM_INT>no</FW_PROTECT_FROM_INT>
+    <FW_ROUTE>no</FW_ROUTE>
+    <FW_SERVICES_ACCEPT_DMZ></FW_SERVICES_ACCEPT_DMZ>
+    <FW_SERVICES_ACCEPT_EXT></FW_SERVICES_ACCEPT_EXT>
+    <FW_SERVICES_ACCEPT_INT></FW_SERVICES_ACCEPT_INT>
+    <FW_SERVICES_ACCEPT_RELATED_DMZ></FW_SERVICES_ACCEPT_RELATED_DMZ>
+    <FW_SERVICES_ACCEPT_RELATED_EXT></FW_SERVICES_ACCEPT_RELATED_EXT>
+    <FW_SERVICES_ACCEPT_RELATED_INT></FW_SERVICES_ACCEPT_RELATED_INT>
+    <FW_SERVICES_DMZ_IP></FW_SERVICES_DMZ_IP>
+    <FW_SERVICES_DMZ_RPC></FW_SERVICES_DMZ_RPC>
+    <FW_SERVICES_DMZ_TCP></FW_SERVICES_DMZ_TCP>
+    <FW_SERVICES_DMZ_UDP></FW_SERVICES_DMZ_UDP>
+    <FW_SERVICES_EXT_IP></FW_SERVICES_EXT_IP>
+    <FW_SERVICES_EXT_RPC></FW_SERVICES_EXT_RPC>
+    <FW_SERVICES_EXT_TCP></FW_SERVICES_EXT_TCP>
+    <FW_SERVICES_EXT_UDP></FW_SERVICES_EXT_UDP>
+    <FW_SERVICES_INT_IP></FW_SERVICES_INT_IP>
+    <FW_SERVICES_INT_RPC></FW_SERVICES_INT_RPC>
+    <FW_SERVICES_INT_TCP></FW_SERVICES_INT_TCP>
+    <FW_SERVICES_INT_UDP></FW_SERVICES_INT_UDP>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <start_firewall config:type="boolean">false</start_firewall>
+  </firewall>
   <general>
+    <ask-list config:type="list"/>
     <mode>
       <confirm config:type="boolean">false</confirm>
-      <forceboot config:type="boolean">true</forceboot>
-      <final_reboot config:type="boolean">false</final_reboot>
     </mode>
+    <mouse>
+      <id>none</id>
+    </mouse>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">true</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">true</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">true</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">true</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage/>
   </general>
+  <partitioning config:type="list">
+    <drive>
+      <device>/dev/sda</device>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext3</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/boot</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>200M</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext3</filesystem>
+          <filesystem_id config:type="integer">142</filesystem_id>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lvm_group>system</lvm_group>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>max</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/system</device>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lv_name>swap</lv_name>
+          <mount>swap</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <resize config:type="boolean">false</resize>
+          <size>auto</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext3</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <lv_name>root</lv_name>
+          <mount>/</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+          <size>max</size>
+        </partition>
+      </partitions>
+      <pesize>4M</pesize>
+      <type config:type="symbol">CT_LVM</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>::1</host_address>
+        <names config:type="list">
+          <name>localhost ipv6-localhost ipv6-loopback</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>addr:127.0.0.1</host_address>
+        <names config:type="list">
+          <name>n n</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>fe00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-localnet</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-mcastprefix</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::1</host_address>
+        <names config:type="list">
+          <name>ipv6-allnodes</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::2</host_address>
+        <names config:type="list">
+          <name>ipv6-allrouters</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::3</host_address>
+        <names config:type="list">
+          <name>ipv6-allhosts</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
   <report>
-    <messages>
-      <show config:type="boolean">false</show>
-      <timeout config:type="integer">10</timeout>
+    <errors>
       <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </errors>
+    <messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
     </messages>
     <warnings>
-      <show config:type="boolean">false</show>
-      <timeout config:type="integer">10</timeout>
       <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
     </warnings>
-    <errors>
-      <show config:type="boolean">false</show>
-      <timeout config:type="integer">10</timeout>
+    <yesno_messages>
       <log config:type="boolean">true</log>
-    </errors>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </yesno_messages>
   </report>
-  
   <keyboard>
     <keymap>english-us</keymap>
   </keyboard>
@@ -39,57 +313,6 @@
     <hwclock>UTC</hwclock>
     <timezone>Asia/Shanghai</timezone>
   </timezone>
-  <partitioning config:type="list">
-    <drive>
-      <device>/dev/sda</device>
-      <initialize config:type="boolean">true</initialize>
-      <partitions config:type="list">
-        <partition>
-          <label>boot</label>
-          <mount>/boot</mount>
-          <mountby config:type="symbol">label</mountby>
-          <partition_type>primary</partition_type>
-          <size>200M</size>
-        </partition>
-        <partition>
-          <label>system</label>
-          <lvm_group>system</lvm_group>
-          <partition_type>primary</partition_type>
-          <size>max</size>
-        </partition>
-      </partitions>
-      <use>all</use>
-    </drive>
-    <drive>
-      <device>/dev/system</device>
-      <initialize config:type="boolean">true</initialize>
-      <is_lvm_vg config:type="boolean">true</is_lvm_vg>
-      <partitions config:type="list">
-        <partition>
-          <label>swap</label>
-          <mountby config:type="symbol">label</mountby>
-          <filesystem config:type="symbol">swap</filesystem>
-          <lv_name>swap</lv_name>
-          <mount>swap</mount>
-          <size>2G</size>
-        </partition>
-        <partition>
-          <label>root</label>
-          <mountby config:type="symbol">label</mountby>
-          <filesystem config:type="symbol">ext4</filesystem>
-          <lv_name>root</lv_name>
-          <mount>/</mount>
-          <size>max</size>
-        </partition>
-      </partitions>
-      <pesize>4M</pesize>
-      <type config:type="symbol">CT_LVM</type>
-      <use>all</use>
-    </drive>
-  </partitioning>
-  <bootloader>
-    <loader_type>grub2</loader_type>
-  </bootloader>
   <networking>
     <ipv6 config:type="boolean">false</ipv6>
     <keep_install_network config:type="boolean">true</keep_install_network>
@@ -108,20 +331,17 @@
       </interface>
     </interfaces>
   </networking>
-  <firewall>
-    <enable_firewall config:type="boolean">false</enable_firewall>
-    <start_firewall config:type="boolean">false</start_firewall>
-  </firewall>
   <software>
     <image/>
     <instsource/>
     <packages config:type="list">
+      <package>openssh</package>
       <package>vim</package>
       <package>wget</package> 
       <package>libgthread-2_0-0</package> 
     </packages>
     <patterns config:type="list">
-      <pattern>minimal_base</pattern>
+      <pattern>Minimal</pattern>
     </patterns>
   </software>
   <runlevel>
