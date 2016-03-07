@@ -27,7 +27,7 @@ for /f "delims=" %%a in ('getmac /fo csv /nh /v') do (
 net user Administrator %init_password%
 @ping %hypervisor_ip% -n 1
 %curl% -s %vagent_download_url% -o %vagent_local%
-IF NOT EXIST "C:\Windows\vagent" (ip
+IF NOT EXIST "C:\Windows\vagent" (
     %sevenZip% x %vagent_local% -so | %sevenZip% x -aoa -si -ttar -oC:\Windows > nul
     %python% C:\Windows\vagent\vagent_service.py install
     %python% C:\Windows\vagent\vagent_service.py start
