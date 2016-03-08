@@ -1,30 +1,87 @@
 # add custom script in here
 
 VM_INIT='http://172.16.2.254/Packer/qga/vm_init.sh'
-QEMU_GA='http://172.16.2.254/Packer/qga/qemu-ga.suse13'
+QEMU_GA='http://172.16.2.254/Packer/qga/qemu-ga.sles11'
 
 # add respawn script
-cat <<'EOF' > /usr/lib/systemd/system/qemu-guest-agent.service
-[Unit]
-Description=QEMU Guest Agent
-BindsTo=dev-virtio\x2dports-org.qemu.guest_agent.0.device
-After=dev-virtio\x2dports-org.qemu.guest_agent.0.device
-
-[Service]
-UMask=0077
-ExecStart=/usr/bin/qemu-ga \
-  --method=virtio-serial \
-  --path=/dev/virtio-ports/org.qemu.guest_agent.0 \
-  --blacklist=guest-file-open,guest-file-close,guest-file-read,guest-file-write,guest-file-seek,guest-file-flush
-StandardError=syslog
-Restart=always
-RestartSec=0
-
-[Install]
-WantedBy=multi-user.target
+cat << 'EOF' > /lib/udev/rules.d/81-qemu-ga.rules
+SUBSYSTEM=="virtio-ports", ENV{DEVLINKS}=="*/dev/virtio-ports/org.qemu.guest_agent.0", ACTION=="remove", RUN+="/usr/sbin/rcqemu-ga stop"
+SUBSYSTEM=="virtio-ports", ATTR{name}=="org.qemu.guest_agent.0", ACTION=="add", RUN+="/usr/sbin/rcqemu-ga start"
 EOF
 
-systemctl enable qemu-guest-agent.service
+cat <<'EOF' > /usr/sbin/rcqemu-ga 
+#!/bin/sh
+
+GA_BIN=/usr/bin/qemu-ga
+GA_PIDFILE=/var/run/qemu-ga.pid
+PIDS=$(pidofproc $GA_BIN)
+CMD="/usr/bin/qemu-ga-d-f/var/run/qemu-ga.pid"
+
+function re_create_pidfile() {
+    if [ ! -s $GA_PIDFILE ];then
+        if [ ! -z "$PIDS" ];then
+            for PID in $PIDS; do
+                cmd=`cat /proc/$PID/cmdline`
+                if [ "$CMD" == "$cmd" ];then
+                    echo $PID >$GA_PIDFILE
+                    break
+                fi
+            done
+        fi
+    fi
+}
+
+test -s /etc/rc.status && \
+	. /etc/rc.status
+
+test -x $GA_BIN || exit 5
+
+rc_reset
+
+case "$1" in
+    start)
+        echo -n "Starting qemu-ga "
+        if [ -h "/dev/virtio-ports/org.qemu.guest_agent.0" ] ; then
+            re_create_pidfile
+            if ! checkproc -p $GA_PIDFILE $GA_BIN &> /dev/null; then
+                $GA_BIN -d -f $GA_PIDFILE
+                rc_status -v
+            else
+                echo
+                echo "qemu guest agent already running."
+            fi
+        else
+            echo
+            echo "virtio serial org.qemu.guest_agent.0 not found."
+        fi
+        ;;
+	stop)
+        echo -n "Shutting down qemu-ga "
+        re_create_pidfile
+        killproc -p $GA_PIDFILE -TERM $GA_BIN
+        rc_status -v
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        rc_status
+        ;;
+    status)
+        echo -n "Checking for qemu-ga: "
+        re_create_pidfile
+        checkproc -p $GA_PIDFILE $GA_BIN
+        rc_status -v
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+EOF
+
+/sbin/udevadm control --reload-rules  || :
+/sbin/udevadm trigger || :
+
 mkdir -p /usr/var/run/
 
 # wget vm_init
@@ -32,7 +89,7 @@ cd /etc/ && wget $VM_INIT && chmod +x vm_init.sh
 rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 
 # wget qemu_ga
-cd /usr/bin && wget $QEMU_GA && mv qemu-ga.suse13 qemu-ga && chmod +x qemu-ga
+cd /usr/bin && wget $QEMU_GA && mv qemu-ga.sles11 qemu-ga && chmod +x qemu-ga
 
 # remove ip and mac address
 rm -fr /etc/udev/rules.d/70-persistent-net.rules
@@ -43,5 +100,5 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 sed -i -e 's#GRUB_CMDLINE_LINUX=""#GRUB_CMDLINE_LINUX="console=ttyS0 console=ttyS0,115200n8"#' \
 -e 's#splash=silent quiet##' /etc/default/grub
 /sbin/update-bootloader --refresh
-
-
+sed -i 's@#S0.*@S0:12345:respawn:/sbin/agetty -L 9600 ttyS0 vt102@' /etc/inittab
+echo "ttyS0" >> /etc/securetty
