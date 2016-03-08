@@ -17,7 +17,7 @@
     <global>
       <activate>true</activate>
       <boot_root>true</boot_root>
-      <default>SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</default>
+      <default>SUSE Linux Enterprise Server 11 SP4 - 3.0.101-63.1</default>
       <generic_mbr>true</generic_mbr>
       <gfxmenu>/boot/message</gfxmenu>
       <lines_cache_id>3</lines_cache_id>
@@ -44,11 +44,11 @@
     <sections config:type="list">
       <section>
         <append>resume=/dev/system/swap splash=silent showopts</append>
-        <image>/boot/vmlinuz-3.0.76-0.11-default</image>
+        <image>/boot/vmlinuz-3.0.101-63.1-default</image>
         <initial>1</initial>
-        <initrd>/boot/initrd-3.0.76-0.11-default</initrd>
+        <initrd>/boot/initrd-3.0.101-63.1-default</initrd>
         <lines_cache_id>0</lines_cache_id>
-        <name>SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</name>
+        <name>SUSE Linux Enterprise Server 11 SP4 - 3.0.101-63.1</name>
         <original_name>linux</original_name>
         <root>/dev/system/root</root>
         <type>image</type>
@@ -56,10 +56,10 @@
       </section>
       <section>
         <append>showopts ide=nodma apm=off noresume edd=off powersaved=off nohz=off highres=off processor.max_cstate=1 nomodeset x11failsafe</append>
-        <image>/boot/vmlinuz-3.0.76-0.11-default</image>
-        <initrd>/boot/initrd-3.0.76-0.11-default</initrd>
+        <image>/boot/vmlinuz-3.0.101-63.1-default</image>
+        <initrd>/boot/initrd-3.0.101-63.1-default</initrd>
         <lines_cache_id>1</lines_cache_id>
-        <name>Failsafe -- SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</name>
+        <name>Failsafe -- SUSE Linux Enterprise Server 11 SP4 - 3.0.101-63.1</name>
         <original_name>failsafe</original_name>
         <root>/dev/system/root</root>
         <type>image</type>
@@ -321,7 +321,7 @@
       <dhcp_hostname config:type="boolean">true</dhcp_hostname>
       <dhcp_resolv config:type="boolean">true</dhcp_resolv>
       <domain>yunshan.com</domain>
-      <hostname>sles11sp3</hostname>
+      <hostname>sles11sp4</hostname>
     </dns>
     <interfaces config:type="list">
       <interface>
