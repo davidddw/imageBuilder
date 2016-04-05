@@ -10,8 +10,8 @@
     "iso_sr_name": "Local_ISO",
     "sr_name": "SR_Local",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/isos/debian-7.9.0-amd64-netinst.iso",
-    "iso_md5": "774d1fc8c5364e63b22242c33a89c1a3",
+    "iso_url": "http://172.16.2.254/Packer/isos/debian-7.10.0-amd64-netinst.iso",
+    "iso_md5": "7b6e0ec52a8290b2746fe8707c20815c",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
