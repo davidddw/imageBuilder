@@ -7,8 +7,8 @@
     "disk_size": "51200",
     "ssh_port": "22",
     "ssh_wait_timeout": "10000s",
-    "iso_url": "http://172.16.2.254/Packer/isos/ubuntu-16.04-server-amd64.iso",
-    "iso_md5": "56151816cc49dce2872756bbf4deaf6a",
+    "iso_url": "http://172.16.2.254/Packer/isos/ubuntu-16.04-beta2-server-amd64.iso",
+    "iso_md5": "636dc1110096535f81c817fd00a44e9b",
     "vm_name": "{{env `VM_NAME`}}"
   },
   "builders": [
