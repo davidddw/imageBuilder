@@ -28,7 +28,7 @@ function re_create_pidfile() {
                 fi
             done
         fi
-    fi
+fi
 }
 
 test -s /etc/rc.status && \
