@@ -3,15 +3,15 @@
 set -x
 
 : ${BUILD_VERSION:="v$(date +'%Y%m%d%H%M%S')"}
-: ${BUILD_NAME:="CentOS_6.5-x86_64"}
-: ${VM_NAME:="centos_6.5"}
+: ${BUILD_NAME:="CentOS_7.0-x86_64"}
+: ${VM_NAME:="centos_7.0"}
 
 export BUILD_NAME
 export VM_NAME
 export BUILD_VERSION
 
 PWD=`pwd`
-FILENAME=${VM_NAME}
+FILENAME=${VM_NAME}.ovf
 PACKER=/usr/bin/packer
 
 if [ -e "${PWD}/disk" ];
@@ -24,9 +24,9 @@ then
     mkdir -pv ${PWD}/final_images
 fi
 
-$PACKER build template_xen.json
+$PACKER build template_vbox.json
 
-mv ${PWD}/disk/$FILENAME ${PWD}/final_images/${BUILD_NAME}-${BUILD_VERSION}.xva
+mv ${PWD}/${BUILD_NAME}.box ${PWD}/final_images/${BUILD_NAME}-${BUILD_VERSION}.box
 rm -rf ${PWD}/disk
 echo "==> Generate files:"
 find ${PWD}/final_images -type f -printf "==> %f\n"
